@@ -4,13 +4,15 @@ Large binaries **do not** belong in git.
 
 Planned layout (local or release archive):
 
-```
+```text
 data/
-  urdf_snapshots/     # versioned URDF + meshes; record sha256 in manifest
+  urdf_snapshots/     # see urdf_snapshots/NAMING.md — where to copy official URDFs
   renders/            # PNGs shown to annotators
   labels/             # JSON lines, one label per file or consolidated with split column
   manifest.csv        # sample_id, robot_family, urdf_path, render_path, split
 ```
+
+**URDF drop-in guide:** `data/urdf_snapshots/NAMING.md`
 
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 
