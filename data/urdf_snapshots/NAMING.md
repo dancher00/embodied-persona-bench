@@ -50,8 +50,12 @@ Rules:
 
 ## After you add files
 
-1. Fill `PROVENANCE.txt` (template below).
+1. Copy `PROVENANCE.template.txt` to `PROVENANCE.txt` inside the same `<snapshot_id>/` folder and fill it in.
 2. Run `python scripts/extract_urdf_features.py --urdf .../robot.urdf --out .../embodiment.json` (once implemented) and record the `urdf_digest` in your label or manifest row.
+
+### Git note (this repository)
+
+`robot.urdf`, `.xacro`, meshes, and render images under `data/` are **ignored by `.gitignore`** so large vendor files are not committed by accident. Keep them locally (or on Hugging Face / Dataverse for the public dataset release). To commit a **small** redistributable URDF explicitly, use `git add -f path/to/robot.urdf`.
 
 ### `PROVENANCE.txt` template
 
