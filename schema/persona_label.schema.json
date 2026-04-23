@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dancher00/embodied-persona-bench/schema/persona_label.schema.json",
+  "title": "EmbodiedPersonaLabel",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sample_id",
+    "robot_family",
+    "urdf_digest",
+    "ocean",
+    "behavior"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "sample_id": {
+      "type": "string",
+      "description": "Stable id: e.g. family + configuration + perturbation key"
+    },
+    "robot_family": {
+      "type": "string",
+      "enum": [
+        "unitree_a1",
+        "turtlebot3_burger",
+        "xlerobot",
+        "so_101"
+      ]
+    },
+    "urdf_digest": {
+      "type": "string",
+      "description": "SHA-256 of canonicalized URDF snapshot bytes used for this label"
+    },
+    "ocean": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "openness",
+        "conscientiousness",
+        "extraversion",
+        "agreeableness",
+        "neuroticism"
+      ],
+      "properties": {
+        "openness": { "type": "number", "minimum": 1, "maximum": 5 },
+        "conscientiousness": { "type": "number", "minimum": 1, "maximum": 5 },
+        "extraversion": { "type": "number", "minimum": 1, "maximum": 5 },
+        "agreeableness": { "type": "number", "minimum": 1, "maximum": 5 },
+        "neuroticism": { "type": "number", "minimum": 1, "maximum": 5 }
+      }
+    },
+    "behavior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "motion_tempo",
+        "interaction_proactivity",
+        "linguistic_formality",
+        "error_handling_style"
+      ],
+      "properties": {
+        "motion_tempo": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = slow / deliberate, 1 = fast / abrupt"
+        },
+        "interaction_proactivity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = reactive, 1 = initiating"
+        },
+        "linguistic_formality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = informal, 1 = formal"
+        },
+        "error_handling_style": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = withdrawn / apologetic, 1 = direct / corrective"
+        }
+      }
+    },
+    "persona_brief": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Optional 3–6 sentence persona; must not claim capabilities absent from URDF-derived summary"
+    },
+    "notes_internal": {
+      "type": "string",
+      "description": "Optional annotator notes; strip before public release if needed"
+    }
+  }
+}
