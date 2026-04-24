@@ -40,8 +40,9 @@ Rules:
 
 ## Canonical file name
 
-- The main description file **must** be named **`robot.urdf`** inside `<snapshot_id>/`.
-  - If upstream uses another name (`a1.urdf`, `turtlebot3_burger.urdf`), copy or symlink it to `robot.urdf` for this benchmark.
+- Prefer a single entry file **`robot.urdf`** (plain URDF) inside `<snapshot_id>/`, with **`meshes/`** next to it if STL paths are relative (`meshes/link.stl`). Example: `so_101/brukg_SO-100-arm_5e97ca9/`.
+- If you only keep **xacro**, use **`urdf/robot.urdf.xacro`** as the entry and document how to expand to `robot.urdf`.
+- If upstream uses another basename, still expose **`robot.urdf`** or **`robot.urdf.xacro`** as the canonical entry for tooling.
 
 ## Meshes
 
@@ -55,7 +56,7 @@ Rules:
 
 ### Git note (this repository)
 
-`robot.urdf`, `.xacro`, meshes, and render images under `data/` are **ignored by `.gitignore`** so large vendor files are not committed by accident. Keep them locally (or on Hugging Face / Dataverse for the public dataset release). To commit a **small** redistributable URDF explicitly, use `git add -f path/to/robot.urdf`.
+Small **curated** snapshots (xacro + STL + `PROVENANCE.txt`) under `data/urdf_snapshots/` are **tracked**. Nested vendor `.git/` trees under `data/` are ignored—clone upstream elsewhere, then copy a pruned snapshot here (see `so_101/brukg_SO-100-arm_*`).
 
 ### `PROVENANCE.txt` template
 

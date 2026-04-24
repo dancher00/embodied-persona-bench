@@ -1,0 +1,2 @@
+sample_id,robot_family,urdf_relative,embodiment_json_relative,split,notes
+so101_brukg_5e97ca9,so_101,data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf,data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/embodiment.json,train,SO-100/SO-101 same mechanics; URDF from brukg/SO-100-arm@5e97ca9

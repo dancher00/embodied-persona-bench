@@ -24,6 +24,11 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 python scripts/extract_urdf_features.py --urdf path/to/robot.urdf
+# SO-101 / SO-100 (same mechanics) — extract features + write embodiment.json:
+python scripts/extract_urdf_features.py \
+  --urdf data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf \
+  --robot-family so_101 \
+  --out data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/embodiment.json
 ```
 
 ## Citation

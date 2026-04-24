@@ -30,21 +30,17 @@ htmlcov/
 *.synctex.gz
 *.toc
 
-# Data artifacts: keep folder layout + NAMING.md / PROVENANCE.txt in git;
-# ignore heavy meshes and (by default) local URDF copies — force-add if small & redistributable.
-data/urdf_snapshots/**/meshes/
-data/urdf_snapshots/**/*.stl
-data/urdf_snapshots/**/*.dae
-data/urdf_snapshots/**/*.obj
-data/urdf_snapshots/**/*.ply
-data/urdf_snapshots/**/*.urdf
-data/urdf_snapshots/**/*.xacro
-data/urdf_snapshots/**/*.sdf
+# Curated URDF snapshots live under data/urdf_snapshots/<family>/<snapshot_id>/ (tracked).
+# Ignore accidental nested git checkouts or colcon trees dropped under data/.
+data/urdf_snapshots/**/.git/
+data/urdf_snapshots/**/install/
+data/urdf_snapshots/**/build/
+data/urdf_snapshots/**/log/
+
 data/renders/**/*.png
 data/renders/**/*.jpg
 data/renders/**/*.jpeg
 data/renders/**/*.webp
-data/labels/**/*.json
 data/raw_labels/
 *.zip
 *.bag

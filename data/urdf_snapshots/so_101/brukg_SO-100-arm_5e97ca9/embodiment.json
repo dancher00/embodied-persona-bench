@@ -1,0 +1,138 @@
+{
+  "counts": {
+    "actuated_joints": 6,
+    "joint_types": {
+      "fixed": 2,
+      "revolute": 6
+    },
+    "joints": 8,
+    "links": 9
+  },
+  "flags": {
+    "has_end_effector_link": true,
+    "has_gripper_joint": true
+  },
+  "joints": [
+    {
+      "axis_xyz": null,
+      "child": "Base",
+      "limit": null,
+      "name": "base_link_joint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 -1 0",
+      "child": "Shoulder_Rotation_Pitch",
+      "limit": {
+        "effort": "1000",
+        "lower": "-1.96",
+        "upper": "1.96",
+        "velocity": "5.0"
+      },
+      "name": "Shoulder_Rotation",
+      "parent": "Base",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "Upper_Arm",
+      "limit": {
+        "effort": "1000",
+        "lower": "-1.745",
+        "upper": "1.745",
+        "velocity": "5.0"
+      },
+      "name": "Shoulder_Pitch",
+      "parent": "Shoulder_Rotation_Pitch",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "Lower_Arm",
+      "limit": {
+        "effort": "1000",
+        "lower": "-1.5",
+        "upper": "1.5",
+        "velocity": "5.0"
+      },
+      "name": "Elbow",
+      "parent": "Upper_Arm",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "Wrist_Pitch_Roll",
+      "limit": {
+        "effort": "1000",
+        "lower": "-1.658",
+        "upper": "1.658",
+        "velocity": "5.0"
+      },
+      "name": "Wrist_Pitch",
+      "parent": "Lower_Arm",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "Fixed_Gripper",
+      "limit": {
+        "effort": "1000",
+        "lower": "-2.75",
+        "upper": "2.75",
+        "velocity": "5.0"
+      },
+      "name": "Wrist_Roll",
+      "parent": "Wrist_Pitch_Roll",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "Moving_Jaw",
+      "limit": {
+        "effort": "1000",
+        "lower": "-0.1792",
+        "upper": "1.5708",
+        "velocity": "5.0"
+      },
+      "name": "Gripper",
+      "parent": "Fixed_Gripper",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "End_Effector",
+      "limit": null,
+      "name": "End_Effector_Joint",
+      "parent": "Fixed_Gripper",
+      "type": "fixed"
+    }
+  ],
+  "link_names": [
+    "base_link",
+    "Base",
+    "Shoulder_Rotation_Pitch",
+    "Upper_Arm",
+    "Lower_Arm",
+    "Wrist_Pitch_Roll",
+    "Fixed_Gripper",
+    "Moving_Jaw",
+    "End_Effector"
+  ],
+  "mesh_filenames": [
+    "meshes/Base.STL",
+    "meshes/Fixed_Gripper.STL",
+    "meshes/Lower_Arm.STL",
+    "meshes/Moving_Jaw.STL",
+    "meshes/Shoulder_Rotation_Pitch.STL",
+    "meshes/Upper_Arm.STL",
+    "meshes/Wrist_Pitch_Roll.STL"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "so_101",
+  "robot_name_urdf": "so_arm_100_5dof",
+  "schema_version": "0.1.0",
+  "urdf_digest": "3e7d38c1fb858ee2e41e1ca84a129aed76a21558169dd1a1e968a4b2e0604a5a",
+  "urdf_path": "data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf"
+}

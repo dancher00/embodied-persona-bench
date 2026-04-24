@@ -1,0 +1,8 @@
+upstream_url: https://github.com/brukg/SO-100-arm
+upstream_commit: 5e97ca9923434b5a8fcf7deecee96403278be6a0
+upstream_short: 5e97ca9
+license: Apache-2.0 (see LICENSE.upstream)
+retrieved_date: 2026-04-24
+robot_family_note: SO-100 and SO-101 share the same kinematics for our purposes; dataset key is so_101. URDF is SO-ARM100 5-DOF from upstream brukg/SO-100-arm.
+
+snapshot_contents: Flat export — plain robot.urdf (kinematics + visuals/collisions) and meshes/ STL files. Generated from so_arm_100_description urdf macro (Gazebo tags stripped; no ros2_control in shipped files).
