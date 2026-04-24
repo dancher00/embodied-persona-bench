@@ -1,0 +1,21 @@
+{
+  "behavior": {
+    "error_handling_style": 0.45,
+    "interaction_proactivity": 0.35,
+    "linguistic_formality": 0.5,
+    "motion_tempo": 0.4
+  },
+  "notes_internal": "Replace with real multi-annotator labels; digest must match embodiment.json for this URDF.",
+  "ocean": {
+    "agreeableness": 4.0,
+    "conscientiousness": 4.0,
+    "extraversion": 2.5,
+    "neuroticism": 2.5,
+    "openness": 3.0
+  },
+  "persona_brief": "Pilot placeholder: a compact manipulator suited to careful tabletop work. It prefers clear, neutral phrasing and measured motions when interacting near people.",
+  "robot_family": "so_101",
+  "sample_id": "so101_brukg_5e97ca9",
+  "schema_version": "0.1.0",
+  "urdf_digest": "3e7d38c1fb858ee2e41e1ca84a129aed76a21558169dd1a1e968a4b2e0604a5a"
+}

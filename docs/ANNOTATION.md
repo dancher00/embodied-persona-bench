@@ -4,6 +4,15 @@
 
 Given the **same evidence** every model sees (URDF-derived summary + canonical render), produce a **structured persona** that is plausible for human–robot interaction design and **consistent with embodiment** (locomotion class, manipulation affordances, rough scale).
 
+## Tooling (local)
+
+```bash
+pip install -e ".[annotate]"
+streamlit run tools/annotate_app.py
+```
+
+Reads `data/manifest.csv`, shows render + full `embodiment.json`, validates against `schema/persona_label.schema.json`, then **download** or **save** to `data/labels/by_annotator/<annotator_id>/<sample_id>.json`.
+
 ## Evidence provided to annotators
 
 1. Canonical render(s) of the robot (fixed camera / lighting — defined per release).

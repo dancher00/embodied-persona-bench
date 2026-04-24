@@ -37,10 +37,10 @@ data/urdf_snapshots/**/install/
 data/urdf_snapshots/**/build/
 data/urdf_snapshots/**/log/
 
-data/renders/**/*.png
-data/renders/**/*.jpg
-data/renders/**/*.jpeg
-data/renders/**/*.webp
+# Large local render batches (keep canonical previews like data/renders/so101_*/*.png tracked)
+data/renders/_bulk/
 data/raw_labels/
+# Optional: ignore local annotation trials
+# data/labels/by_annotator/
 *.zip
 *.bag
