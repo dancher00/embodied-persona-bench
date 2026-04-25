@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>URDF viewer (embodied-persona-bench)</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; font-family: system-ui, sans-serif; }
+    #info {
+      position: absolute; z-index: 2; top: 10px; left: 10px; max-width: min(480px, 92vw);
+      background: rgba(255,255,255,0.92); padding: 10px 12px; border-radius: 8px; font-size: 13px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+    }
+    #err { color: #a40000; white-space: pre-wrap; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <div id="info">
+    <div><strong>URDF viewer</strong> — drag orbit (LMB), pan (RMB / Ctrl+LMB), zoom (scroll).</div>
+    <div id="status">Loading…</div>
+    <div id="err"></div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "urdf-loader": "https://unpkg.com/urdf-loader@0.12.4/src/URDFLoader.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { LoaderUtils } from 'three';
+    import URDFLoader from 'urdf-loader';
+
+    const params = new URLSearchParams(window.location.search);
+    const urdfRel = params.get('urdf') || 'data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf';
+    const urdfURL = new URL(urdfRel.replace(/^\/+/, ''), window.location.origin + '/').href;
+    const workingPath = LoaderUtils.extractUrlBase(urdfURL);
+
+    const statusEl = document.getElementById('status');
+    const errEl = document.getElementById('err');
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf0f2f5);
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 100);
+    camera.position.set(0.6, 0.45, 0.6);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0.15, 0);
+    controls.update();
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.9));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.85);
+    dir.position.set(2, 4, 3);
+    dir.castShadow = true;
+    scene.add(dir);
+    scene.add(new THREE.GridHelper(1.5, 18, 0xcccccc, 0xe0e0e0));
+
+    const manager = new THREE.LoadingManager();
+    manager.onError = (url) => {
+      errEl.textContent += `Load error: ${url}\n`;
+    };
+
+    const loader = new URDFLoader(manager);
+    loader.workingPath = workingPath;
+
+    loader.load(
+      urdfURL,
+      (robot) => {
+        scene.add(robot);
+        const box = new THREE.Box3().setFromObject(robot);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z, 0.05);
+        controls.target.copy(center);
+        camera.near = maxDim / 100;
+        camera.far = maxDim * 100;
+        camera.updateProjectionMatrix();
+        camera.position.copy(center).add(new THREE.Vector3(maxDim * 1.1, maxDim * 0.85, maxDim * 1.1));
+        controls.update();
+        statusEl.textContent = `Loaded: ${urdfRel}`;
+      },
+      undefined,
+      (err) => {
+        statusEl.textContent = 'Failed';
+        errEl.textContent = String(err && err.message ? err.message : err);
+      },
+    );
+
+    function onResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', onResize);
+
+    function tick() {
+      requestAnimationFrame(tick);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    tick();
+  </script>
+</body>
+</html>

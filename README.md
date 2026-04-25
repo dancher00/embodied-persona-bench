@@ -22,7 +22,7 @@ Work in progress, targeting **NeurIPS 2026 Evaluations & Datasets** style contri
 | `schema/` | JSON Schema for labels and optional manifest records |
 | `docs/` | Annotator instructions and rubrics |
 | `scripts/` | URDF feature extraction, preview render, loop checks, evaluation (growing) |
-| `tools/` | Streamlit annotation UI (`annotate_app.py`) |
+| `tools/` | Streamlit UI (`annotate_app.py`) + static Three.js URDF viewer (`urdf_viewer/index.html`) |
 | `data/` | Curated v0 assets + manifest; see `data/README.md` (large *future* dumps may live on HF/Dataverse) |
 
 ## Quick start
@@ -43,6 +43,22 @@ pip install -e ".[dev]"
 python scripts/close_loop_so101.py
 ```
 
+## URDF visualization (Three.js, same stack as gkjohnson/urdf-loaders)
+
+Interactive viewer in the browser (loads `robot.urdf` and resolves `meshes/` next to it):
+
+```bash
+python scripts/serve_urdf_viewer.py --port 8765 --open
+# or without opening a tab:
+python scripts/serve_urdf_viewer.py
+```
+
+Then open (default SO-101):  
+`http://127.0.0.1:8765/tools/urdf_viewer/index.html?urdf=data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf`
+
+Uses [urdf-loader](https://www.npmjs.com/package/urdf-loader) + Three.js from CDN (see [live examples](https://gkjohnson.github.io/urdf-loaders/javascript/example/bundle/)).  
+**Thumbnail PNG** from STLs only (no URDF tree): `scripts/render_meshes_preview.py` / `close_loop_so101.py`.
+
 ## Annotation UI (Streamlit)
 
 ```bash
@@ -50,7 +66,7 @@ pip install -e ".[annotate]"
 streamlit run tools/annotate_app.py
 ```
 
-Opens a browser UI: pick a row from `data/manifest.csv`, see render + `embodiment.json`, fill OCEAN / behavior / optional text, **download JSON** or **save** under `data/labels/by_annotator/<annotator_id>/<sample_id>.json` (validates against `schema/persona_label.schema.json`).
+Pick a row from `data/manifest.csv`; the app **embeds** the Three.js URDF viewer in the left column (iframe to `serve_urdf_viewer.py`). Optional matplotlib thumbnail lives in a collapsed expander. Then fill OCEAN / behavior / optional text — **download JSON** or **save** under `data/labels/by_annotator/<annotator_id>/<sample_id>.json` (validates against `schema/persona_label.schema.json`).
 
 ## Citation
 

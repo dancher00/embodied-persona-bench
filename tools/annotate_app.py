@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import csv
 import json
+import urllib.parse
 from pathlib import Path
 
 import jsonschema
 import streamlit as st
+import streamlit.components.v1 as components
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = REPO_ROOT / "data" / "manifest.csv"
@@ -31,8 +33,9 @@ def main() -> None:
     st.set_page_config(page_title="Embodied persona — annotation", layout="wide")
     st.title("Embodied persona annotation")
     st.caption(
-        "Rate the **intended public-facing persona** of this robot given the render "
-        "and embodiment summary. Do not claim capabilities absent from the summary."
+        "Rate the **intended public-facing persona** of this robot using the **embedded 3D URDF** "
+        "(left) and the embodiment summary. If the 3D panel is empty, start the static server from the sidebar. "
+        "Do not claim capabilities absent from the summary."
     )
 
     rows = load_manifest_rows()
@@ -44,6 +47,26 @@ def main() -> None:
     choice = st.selectbox("Sample", sample_ids, index=0)
     row = next(r for r in rows if r["sample_id"] == choice)
 
+    st.sidebar.divider()
+    st.sidebar.subheader("URDF viewer server (Three.js)")
+    vport = st.sidebar.number_input("Viewer port", min_value=1024, max_value=65535, value=8765, step=1)
+    vhost = st.sidebar.text_input("Viewer host", value="127.0.0.1")
+    vheight = st.sidebar.number_input(
+        "Embedded viewer height (px)",
+        min_value=320,
+        max_value=1200,
+        value=560,
+        step=20,
+    )
+    urdf_rel = row["urdf_relative"].replace("\\", "/")
+    viewer_q = urllib.parse.urlencode({"urdf": urdf_rel})
+    viewer_url = f"http://{vhost}:{int(vport)}/tools/urdf_viewer/index.html?{viewer_q}"
+    st.sidebar.markdown(f"[Open **3D URDF** in new tab]({viewer_url})")
+    st.sidebar.caption(
+        f"Same URL is embedded in the main layout. From repo root:  \n"
+        f"`python scripts/serve_urdf_viewer.py --port {int(vport)}`"
+    )
+
     emb_path = REPO_ROOT / row["embodiment_json_relative"]
     img_path = REPO_ROOT / row["render_relative"]
     if not emb_path.is_file():
@@ -54,10 +77,18 @@ def main() -> None:
 
     c1, c2 = st.columns([1, 1])
     with c1:
-        if img_path.is_file():
-            st.image(str(img_path), use_container_width=True)
-        else:
-            st.warning(f"No render at {img_path}")
+        st.subheader("Robot (URDF + meshes)")
+        st.caption("Drag to orbit · scroll to zoom (same viewer as `serve_urdf_viewer.py`).")
+        components.iframe(src=viewer_url, height=int(vheight), scrolling=False)
+        st.caption(
+            "Blank panel → start `python scripts/serve_urdf_viewer.py` with the **Viewer host/port** "
+            "from the sidebar."
+        )
+        with st.expander("Static matplotlib thumbnail (offline fallback)", expanded=False):
+            if img_path.is_file():
+                st.image(str(img_path), use_container_width=True)
+            else:
+                st.caption(f"No file at `{img_path.relative_to(REPO_ROOT)}`")
     with c2:
         st.subheader("Embodiment summary")
         st.write(

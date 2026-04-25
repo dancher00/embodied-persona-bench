@@ -13,7 +13,7 @@ data/
 ```
 
 **URDF drop-in guide:** `data/urdf_snapshots/NAMING.md`  
-**SO-101 / SO-100 closed loop:** `brukg_SO-100-arm_5e97ca9/` (`robot.urdf`, `meshes/`, `embodiment.json`) + `data/renders/so101_brukg_5e97ca9/preview.png` + `data/labels/so101_brukg_5e97ca9.placeholder.json`. Run `python scripts/close_loop_so101.py` after `.[dev]` install to regenerate. Manifest: `data/manifest.csv` (see also `manifest.example.csv`).
+**SO-101 / SO-100 closed loop:** `brukg_SO-100-arm_5e97ca9/` (`robot.urdf`, `meshes/`, `embodiment.json`) + optional `data/renders/so101_brukg_5e97ca9/preview.png` (matplotlib STL thumbnail) + `data/labels/so101_brukg_5e97ca9.placeholder.json`. Run `python scripts/close_loop_so101.py` after `.[dev]` install to regenerate the thumbnail and JSON. For **assembled URDF in the browser**, run `python scripts/serve_urdf_viewer.py` and open the URL from the repo `README.md`. Manifest: `data/manifest.csv` (see also `manifest.example.csv`).
 
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 

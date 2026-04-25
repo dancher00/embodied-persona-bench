@@ -11,7 +11,7 @@ pip install -e ".[annotate]"
 streamlit run tools/annotate_app.py
 ```
 
-Reads `data/manifest.csv`, shows render + full `embodiment.json`, validates against `schema/persona_label.schema.json`, then **download** or **save** to `data/labels/by_annotator/<annotator_id>/<sample_id>.json`.
+Reads `data/manifest.csv`, **embeds** the Three.js URDF viewer (iframe; run `python scripts/serve_urdf_viewer.py` at repo root with matching host/port), optional matplotlib thumbnail in an expander, full `embodiment.json`, validates against `schema/persona_label.schema.json`, then **download** or **save** to `data/labels/by_annotator/<annotator_id>/<sample_id>.json`.
 
 ## Evidence provided to annotators
 

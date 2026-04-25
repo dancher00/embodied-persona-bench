@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Headless 3D preview PNG from STL directory (matplotlib + numpy-stl)."""
+"""Headless **thumbnail** PNG from STL directory (matplotlib + numpy-stl).
+
+Does not apply URDF joint poses. For correct robot assembly from `robot.urdf` + meshes,
+use `tools/urdf_viewer/` + `scripts/serve_urdf_viewer.py` (Three.js + urdf-loader, same stack as
+https://gkjohnson.github.io/urdf-loaders/javascript/example/bundle/ ).
+"""
 
 from __future__ import annotations
 
