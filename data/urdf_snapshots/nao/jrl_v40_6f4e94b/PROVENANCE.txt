@@ -1,0 +1,13 @@
+upstream_url: https://github.com/jrl-umi3218/nao_description
+upstream_commit: 6f4e94b398ff3ce12f9b3ed19cc0fe3e4a6fc8a4
+license: BSD-2-Clause (see LICENSE.upstream; copyright CNRS-UM LIRMM, CNRS-AIST JRL, SoftBank Robotics Europe)
+retrieved_date: 2026-04-25
+notes: |
+  Many ROS packages ship NAO URDF without binary meshes (meshes are optional / separate packages).
+  This snapshot uses jrl-umi3218/nao_description: plain urdf/nao.urdf (robot NAOV40), meshes/V40/*.dae,
+  and texture/textureNAO.png copied into meshes/V40/ as textureNAO.png so Collada resolves textures
+  next to each .dae (same layout the loader expects over HTTP).
+
+  robot.urdf rewrites package://nao_description/meshes/ → meshes/ for browser + tooling without ROS.
+
+snapshot_contents: robot.urdf, meshes/V40/*.dae, meshes/V40/textureNAO.png, package.xml, LICENSE.upstream, embodiment.json, PROVENANCE.txt

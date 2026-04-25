@@ -1,0 +1,947 @@
+{
+  "counts": {
+    "actuated_joints": 42,
+    "joint_types": {
+      "continuous": 16,
+      "fixed": 41,
+      "revolute": 26
+    },
+    "joints": 83,
+    "links": 84
+  },
+  "flags": {
+    "has_end_effector_link": false,
+    "has_gripper_joint": false
+  },
+  "joints": [
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "Neck",
+      "limit": {
+        "effort": "1.547",
+        "lower": "-2.08567",
+        "upper": "2.08567",
+        "velocity": "8.26797"
+      },
+      "name": "HeadYaw",
+      "parent": "torso",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "Head",
+      "limit": {
+        "effort": "1.532",
+        "lower": "-0.671952",
+        "upper": "0.514872",
+        "velocity": "7.19407"
+      },
+      "name": "HeadPitch",
+      "parent": "Neck",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "gaze",
+      "limit": null,
+      "name": "gaze_joint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0.707106 -0.707106",
+      "child": "LPelvis",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-1.14529",
+        "upper": "0.740718",
+        "velocity": "4.16174"
+      },
+      "name": "LHipYawPitch",
+      "parent": "torso",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "LHip",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-0.379435",
+        "upper": "0.79046",
+        "velocity": "4.16174"
+      },
+      "name": "LHipRoll",
+      "parent": "LPelvis",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "LThigh",
+      "limit": {
+        "effort": "3.023",
+        "lower": "-1.53589",
+        "upper": "0.48398",
+        "velocity": "6.40239"
+      },
+      "name": "LHipPitch",
+      "parent": "LHip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "LTibia",
+      "limit": {
+        "effort": "3.023",
+        "lower": "-0.0923279",
+        "upper": "2.11255",
+        "velocity": "6.40239"
+      },
+      "name": "LKneePitch",
+      "parent": "LThigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "LAnklePitch",
+      "limit": {
+        "effort": "3.023",
+        "lower": "-1.18944",
+        "upper": "0.922581",
+        "velocity": "6.40239"
+      },
+      "name": "LAnklePitch",
+      "parent": "LTibia",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "l_ankle",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-0.397761",
+        "upper": "0.768992",
+        "velocity": "4.16174"
+      },
+      "name": "LAnkleRoll",
+      "parent": "LAnklePitch",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "l_sole",
+      "limit": null,
+      "name": "LLeg_effector_fixedjoint",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0.707106 0.707106",
+      "child": "RPelvis",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-1.14529",
+        "upper": "0.740718",
+        "velocity": "4.16174"
+      },
+      "name": "RHipYawPitch",
+      "parent": "torso",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "RHip",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-0.79046",
+        "upper": "0.379435",
+        "velocity": "4.16174"
+      },
+      "name": "RHipRoll",
+      "parent": "RPelvis",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "RThigh",
+      "limit": {
+        "effort": "3.0226",
+        "lower": "-1.53589",
+        "upper": "0.48398",
+        "velocity": "6.40239"
+      },
+      "name": "RHipPitch",
+      "parent": "RHip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "RTibia",
+      "limit": {
+        "effort": "3.0226",
+        "lower": "-0.0923279",
+        "upper": "2.11255",
+        "velocity": "6.40239"
+      },
+      "name": "RKneePitch",
+      "parent": "RThigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "RAnklePitch",
+      "limit": {
+        "effort": "3.0226",
+        "lower": "-1.1863",
+        "upper": "0.932006",
+        "velocity": "6.40239"
+      },
+      "name": "RAnklePitch",
+      "parent": "RTibia",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "r_ankle",
+      "limit": {
+        "effort": "3.348",
+        "lower": "-0.768992",
+        "upper": "0.397761",
+        "velocity": "4.16174"
+      },
+      "name": "RAnkleRoll",
+      "parent": "RAnklePitch",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "r_sole",
+      "limit": null,
+      "name": "RLeg_effector_fixedjoint",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "torso",
+      "limit": null,
+      "name": "base_link_fixedjoint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "LShoulder",
+      "limit": {
+        "effort": "1.329",
+        "lower": "-2.08567",
+        "upper": "2.08567",
+        "velocity": "8.26797"
+      },
+      "name": "LShoulderPitch",
+      "parent": "torso",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LBicep",
+      "limit": {
+        "effort": "1.7835",
+        "lower": "-0.314159",
+        "upper": "1.32645",
+        "velocity": "7.19407"
+      },
+      "name": "LShoulderRoll",
+      "parent": "LShoulder",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "LElbow",
+      "limit": {
+        "effort": "1.547",
+        "lower": "-2.08567",
+        "upper": "2.08567",
+        "velocity": "8.26797"
+      },
+      "name": "LElbowYaw",
+      "parent": "LBicep",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LForeArm",
+      "limit": {
+        "effort": "1.532",
+        "lower": "-1.54462",
+        "upper": "-0.0349066",
+        "velocity": "7.19407"
+      },
+      "name": "LElbowRoll",
+      "parent": "LElbow",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "l_wrist",
+      "limit": {
+        "effort": "0.4075",
+        "lower": "-1.82387",
+        "upper": "1.82387",
+        "velocity": "24.6229"
+      },
+      "name": "LWristYaw",
+      "parent": "LForeArm",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "l_gripper",
+      "limit": {
+        "effort": "0.292",
+        "lower": "0",
+        "upper": "1.0",
+        "velocity": "8.33"
+      },
+      "name": "LHand",
+      "parent": "l_wrist",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "RShoulder",
+      "limit": {
+        "effort": "1.329",
+        "lower": "-2.08567",
+        "upper": "2.08567",
+        "velocity": "8.26797"
+      },
+      "name": "RShoulderPitch",
+      "parent": "torso",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RBicep",
+      "limit": {
+        "effort": "1.783",
+        "lower": "-1.32645",
+        "upper": "0.314159",
+        "velocity": "7.19407"
+      },
+      "name": "RShoulderRoll",
+      "parent": "RShoulder",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "RElbow",
+      "limit": {
+        "effort": "1.547",
+        "lower": "-2.08567",
+        "upper": "2.08567",
+        "velocity": "8.26797"
+      },
+      "name": "RElbowYaw",
+      "parent": "RBicep",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RForeArm",
+      "limit": {
+        "effort": "1.532",
+        "lower": "0.0349066",
+        "upper": "1.54462",
+        "velocity": "7.19407"
+      },
+      "name": "RElbowRoll",
+      "parent": "RElbow",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "r_wrist",
+      "limit": {
+        "effort": "0.4075",
+        "lower": "-1.82387",
+        "upper": "1.82387",
+        "velocity": "24.6229"
+      },
+      "name": "RWristYaw",
+      "parent": "RForeArm",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1.0 0 0",
+      "child": "r_gripper",
+      "limit": {
+        "effort": "0.292",
+        "lower": "0",
+        "upper": "1.0",
+        "velocity": "8.33"
+      },
+      "name": "RHand",
+      "parent": "r_wrist",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFootBumperRight_frame",
+      "limit": null,
+      "name": "LFootBumperRight",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFsrRL_frame",
+      "limit": null,
+      "name": "RFsrRL",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "CameraBottom_optical_frame",
+      "limit": null,
+      "name": "CameraBottom_optical_frame_fixedjoint",
+      "parent": "CameraBottom_frame",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFsrRR_frame",
+      "limit": null,
+      "name": "RFsrRR",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFsrFR_frame",
+      "limit": null,
+      "name": "LFsrFR",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LHandTouchBack_frame",
+      "limit": null,
+      "name": "LHand/Touch/Back_sensor_fixedjoint",
+      "parent": "l_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LHandTouchLeft_frame",
+      "limit": null,
+      "name": "LHand/Touch/Left_sensor_fixedjoint",
+      "parent": "l_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFootBumperRight_frame",
+      "limit": null,
+      "name": "RFootBumperRight",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFsrFR_frame",
+      "limit": null,
+      "name": "RFsrFR",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "MicroSurroundLeft_frame",
+      "limit": null,
+      "name": "MicroLeft_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFsrRR_frame",
+      "limit": null,
+      "name": "LFsrRR",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "MicroSurroundRight_frame",
+      "limit": null,
+      "name": "MicroRight_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "ImuTorsoAccelerometer_frame",
+      "limit": null,
+      "name": "Accelerometer_sensor_fixedjoint",
+      "parent": "torso",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "HeadTouchFront_frame",
+      "limit": null,
+      "name": "Head/Touch/Front_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFootBumperLeft_frame",
+      "limit": null,
+      "name": "RFootBumperLeft",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RSonar_frame",
+      "limit": null,
+      "name": "Sonar/Right_sensor_fixedjoint",
+      "parent": "torso",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RHandTouchRight_frame",
+      "limit": null,
+      "name": "RHand/Touch/Right_sensor_fixedjoint",
+      "parent": "r_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RHandTouchBack_frame",
+      "limit": null,
+      "name": "RHand/Touch/Back_sensor_fixedjoint",
+      "parent": "r_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RFsrFL_frame",
+      "limit": null,
+      "name": "RFsrFL",
+      "parent": "r_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LSonar_frame",
+      "limit": null,
+      "name": "Sonar/Left_sensor_fixedjoint",
+      "parent": "torso",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFsrFL_frame",
+      "limit": null,
+      "name": "LFsrFL",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFsrRL_frame",
+      "limit": null,
+      "name": "LFsrRL",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RHandTouchLeft_frame",
+      "limit": null,
+      "name": "RHand/Touch/Left_sensor_fixedjoint",
+      "parent": "r_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "CameraBottom_frame",
+      "limit": null,
+      "name": "CameraBottom_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "CameraTop_frame",
+      "limit": null,
+      "name": "CameraTop_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "CameraTop_optical_frame",
+      "limit": null,
+      "name": "CameraTop_optical_frame_fixedjoint",
+      "parent": "CameraTop_frame",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LInfraRed_frame",
+      "limit": null,
+      "name": "InfraredL_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "ImuTorsoGyrometer_frame",
+      "limit": null,
+      "name": "Gyrometer_sensor_fixedjoint",
+      "parent": "torso",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "MicroFrontCenter_frame",
+      "limit": null,
+      "name": "MicroFront_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "HeadTouchRear_frame",
+      "limit": null,
+      "name": "Head/Touch/Rear_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "HeadTouchMiddle_frame",
+      "limit": null,
+      "name": "Head/Touch/Middle_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "RInfraRed_frame",
+      "limit": null,
+      "name": "InfraredR_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "ChestButton_frame",
+      "limit": null,
+      "name": "ChestBoard/Button_sensor_fixedjoint",
+      "parent": "torso",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LFootBumperLeft_frame",
+      "limit": null,
+      "name": "LFootBumperLeft",
+      "parent": "l_ankle",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "MicroRearCenter_frame",
+      "limit": null,
+      "name": "MicroRear_sensor_fixedjoint",
+      "parent": "Head",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "LHandTouchRight_frame",
+      "limit": null,
+      "name": "LHand/Touch/Right_sensor_fixedjoint",
+      "parent": "l_wrist",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger23_link",
+      "limit": null,
+      "name": "RFinger23",
+      "parent": "RFinger22_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger13_link",
+      "limit": null,
+      "name": "RFinger13",
+      "parent": "RFinger12_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger12_link",
+      "limit": null,
+      "name": "RFinger12",
+      "parent": "RFinger11_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger21_link",
+      "limit": null,
+      "name": "LFinger21",
+      "parent": "l_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger13_link",
+      "limit": null,
+      "name": "LFinger13",
+      "parent": "LFinger12_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger11_link",
+      "limit": null,
+      "name": "LFinger11",
+      "parent": "l_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger22_link",
+      "limit": null,
+      "name": "RFinger22",
+      "parent": "RFinger21_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger22_link",
+      "limit": null,
+      "name": "LFinger22",
+      "parent": "LFinger21_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger21_link",
+      "limit": null,
+      "name": "RFinger21",
+      "parent": "r_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger12_link",
+      "limit": null,
+      "name": "LFinger12",
+      "parent": "LFinger11_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RFinger11_link",
+      "limit": null,
+      "name": "RFinger11",
+      "parent": "r_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LFinger23_link",
+      "limit": null,
+      "name": "LFinger23",
+      "parent": "LFinger22_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LThumb1_link",
+      "limit": null,
+      "name": "LThumb1",
+      "parent": "l_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RThumb1_link",
+      "limit": null,
+      "name": "RThumb1",
+      "parent": "r_wrist",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "RThumb2_link",
+      "limit": null,
+      "name": "RThumb2",
+      "parent": "RThumb1_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1.0",
+      "child": "LThumb2_link",
+      "limit": null,
+      "name": "LThumb2",
+      "parent": "LThumb1_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": null,
+      "child": "xtion_link",
+      "limit": null,
+      "name": "xtion_joint",
+      "parent": "Head",
+      "type": "fixed"
+    }
+  ],
+  "link_names": [
+    "Neck",
+    "Head",
+    "gaze",
+    "LPelvis",
+    "LHip",
+    "LThigh",
+    "LTibia",
+    "LAnklePitch",
+    "l_ankle",
+    "l_sole",
+    "RPelvis",
+    "RHip",
+    "RThigh",
+    "RTibia",
+    "RAnklePitch",
+    "r_ankle",
+    "r_sole",
+    "base_link",
+    "torso",
+    "LShoulder",
+    "LBicep",
+    "LElbow",
+    "LForeArm",
+    "l_wrist",
+    "l_gripper",
+    "RShoulder",
+    "RBicep",
+    "RElbow",
+    "RForeArm",
+    "r_wrist",
+    "r_gripper",
+    "LFootBumperRight_frame",
+    "RFsrRL_frame",
+    "CameraBottom_optical_frame",
+    "RFsrRR_frame",
+    "LFsrFR_frame",
+    "LHandTouchBack_frame",
+    "LHandTouchLeft_frame",
+    "RFootBumperRight_frame",
+    "RFsrFR_frame",
+    "MicroSurroundLeft_frame",
+    "LFsrRR_frame",
+    "MicroSurroundRight_frame",
+    "ImuTorsoAccelerometer_frame",
+    "HeadTouchFront_frame",
+    "RFootBumperLeft_frame",
+    "RSonar_frame",
+    "RHandTouchRight_frame",
+    "RHandTouchBack_frame",
+    "RFsrFL_frame",
+    "LSonar_frame",
+    "LFsrFL_frame",
+    "LFsrRL_frame",
+    "RHandTouchLeft_frame",
+    "CameraBottom_frame",
+    "CameraTop_frame",
+    "CameraTop_optical_frame",
+    "LInfraRed_frame",
+    "ImuTorsoGyrometer_frame",
+    "MicroFrontCenter_frame",
+    "HeadTouchRear_frame",
+    "HeadTouchMiddle_frame",
+    "RInfraRed_frame",
+    "ChestButton_frame",
+    "LFootBumperLeft_frame",
+    "MicroRearCenter_frame",
+    "LHandTouchRight_frame",
+    "RFinger23_link",
+    "RFinger13_link",
+    "RFinger12_link",
+    "LFinger21_link",
+    "LFinger13_link",
+    "LFinger11_link",
+    "RFinger22_link",
+    "LFinger22_link",
+    "RFinger21_link",
+    "LFinger12_link",
+    "RFinger11_link",
+    "LFinger23_link",
+    "LThumb1_link",
+    "RThumb1_link",
+    "RThumb2_link",
+    "LThumb2_link",
+    "xtion_link"
+  ],
+  "mesh_filenames": [
+    "meshes/V40/ASUS_XTION.dae",
+    "meshes/V40/HeadPitch.dae",
+    "meshes/V40/HeadYaw.dae",
+    "meshes/V40/LAnklePitch.dae",
+    "meshes/V40/LAnkleRoll.dae",
+    "meshes/V40/LElbowRoll.dae",
+    "meshes/V40/LFinger11.dae",
+    "meshes/V40/LFinger12.dae",
+    "meshes/V40/LFinger13.dae",
+    "meshes/V40/LFinger21.dae",
+    "meshes/V40/LFinger22.dae",
+    "meshes/V40/LFinger23.dae",
+    "meshes/V40/LHipPitch.dae",
+    "meshes/V40/LHipRoll.dae",
+    "meshes/V40/LHipYawPitch.dae",
+    "meshes/V40/LKneePitch.dae",
+    "meshes/V40/LShoulderPitch.dae",
+    "meshes/V40/LShoulderRoll.dae",
+    "meshes/V40/LThumb1.dae",
+    "meshes/V40/LThumb2.dae",
+    "meshes/V40/LWristYaw.dae",
+    "meshes/V40/RAnklePitch.dae",
+    "meshes/V40/RAnkleRoll.dae",
+    "meshes/V40/RElbowRoll.dae",
+    "meshes/V40/RFinger11.dae",
+    "meshes/V40/RFinger12.dae",
+    "meshes/V40/RFinger13.dae",
+    "meshes/V40/RFinger21.dae",
+    "meshes/V40/RFinger22.dae",
+    "meshes/V40/RFinger23.dae",
+    "meshes/V40/RHipPitch.dae",
+    "meshes/V40/RHipRoll.dae",
+    "meshes/V40/RHipYawPitch.dae",
+    "meshes/V40/RKneePitch.dae",
+    "meshes/V40/RShoulderPitch.dae",
+    "meshes/V40/RShoulderRoll.dae",
+    "meshes/V40/RThumb1.dae",
+    "meshes/V40/RThumb2.dae",
+    "meshes/V40/RWristYaw.dae",
+    "meshes/V40/Torso.dae"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "nao",
+  "robot_name_urdf": "NAOV40",
+  "schema_version": "0.1.0",
+  "urdf_digest": "7235dee799f4dcb76c993c1bf3e02746f5bf24d1b193c9ecefe2ce4a280c1a11",
+  "urdf_path": "data/urdf_snapshots/nao/jrl_v40_6f4e94b/robot.urdf"
+}

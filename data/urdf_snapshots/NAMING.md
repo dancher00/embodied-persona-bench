@@ -24,6 +24,7 @@ Use **exactly** these directory names (match `schema/persona_label.schema.json`)
 | `turtlebot3_burger`   | TurtleBot3 Burger |
 | `xlerobot`            | XLeRobot |
 | `so_101`              | SO-101 |
+| `nao`                 | SoftBank / Aldebaran NAO (humanoid) |
 
 ## `snapshot_id` (your version label)
 
@@ -48,6 +49,7 @@ Rules:
 
 - Keep relative paths from `robot.urdf` valid: usually a `meshes/` subfolder next to `robot.urdf`.
 - If upstream spreads files across many dirs, mirror that structure under the same `<snapshot_id>/` root.
+- **Collada (`.dae`)** often references sidecar images (e.g. `trunk_A1.png` next to `trunk.dae`). Copy those files too, or the browser viewer will 404 on textures while geometry still loads.
 
 ## After you add files
 

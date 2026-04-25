@@ -1,0 +1,15 @@
+upstream_url: https://github.com/unitreerobotics/unitree_ros
+upstream_path: robots/a1_description (ROS1 catkin layout; urdf/a1.urdf from xacro)
+upstream_package_version: 0.0.0 (see package.xml in snapshot)
+license: See upstream unitree_ros repository (pin exact license text when you record a git commit).
+retrieved_date: 2026-04-25
+notes: |
+  Local drop-in from user's a1_description tree. robot.urdf is urdf/a1.urdf with
+  mesh paths rewritten from package://a1_description/meshes/ to meshes/ next to robot.urdf.
+  Gazebo and transmission blocks retained for parity with upstream generated URDF.
+  Visual meshes are Collada (.dae); use tools/urdf_viewer (ColladaLoader) for inspection.
+  trunk.dae references texture meshes/trunk_A1.png (not present in the partial local tree);
+  added from upstream:
+  https://raw.githubusercontent.com/unitreerobotics/unitree_ros/master/robots/a1_description/meshes/trunk_A1.png
+
+snapshot_contents: robot.urdf, meshes/*.dae, meshes/trunk_A1.png, package.xml, embodiment.json, PROVENANCE.txt

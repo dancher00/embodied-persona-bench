@@ -1,0 +1,292 @@
+{
+  "counts": {
+    "actuated_joints": 12,
+    "joint_types": {
+      "fixed": 10,
+      "revolute": 12
+    },
+    "joints": 22,
+    "links": 23
+  },
+  "flags": {
+    "has_end_effector_link": false,
+    "has_gripper_joint": false
+  },
+  "joints": [
+    {
+      "axis_xyz": null,
+      "child": "trunk",
+      "limit": null,
+      "name": "floating_base",
+      "parent": "base",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "imu_link",
+      "limit": null,
+      "name": "imu_joint",
+      "parent": "trunk",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "FR_hip",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-0.802851455917",
+        "upper": "0.802851455917",
+        "velocity": "21"
+      },
+      "name": "FR_hip_joint",
+      "parent": "trunk",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "FR_thigh_shoulder",
+      "limit": null,
+      "name": "FR_hip_fixed",
+      "parent": "FR_hip",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "FR_thigh",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-1.0471975512",
+        "upper": "4.18879020479",
+        "velocity": "21"
+      },
+      "name": "FR_thigh_joint",
+      "parent": "FR_hip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "FR_calf",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-2.69653369433",
+        "upper": "-0.916297857297",
+        "velocity": "21"
+      },
+      "name": "FR_calf_joint",
+      "parent": "FR_thigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "FR_foot",
+      "limit": null,
+      "name": "FR_foot_fixed",
+      "parent": "FR_calf",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "FL_hip",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-0.802851455917",
+        "upper": "0.802851455917",
+        "velocity": "21"
+      },
+      "name": "FL_hip_joint",
+      "parent": "trunk",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "FL_thigh_shoulder",
+      "limit": null,
+      "name": "FL_hip_fixed",
+      "parent": "FL_hip",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "FL_thigh",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-1.0471975512",
+        "upper": "4.18879020479",
+        "velocity": "21"
+      },
+      "name": "FL_thigh_joint",
+      "parent": "FL_hip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "FL_calf",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-2.69653369433",
+        "upper": "-0.916297857297",
+        "velocity": "21"
+      },
+      "name": "FL_calf_joint",
+      "parent": "FL_thigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "FL_foot",
+      "limit": null,
+      "name": "FL_foot_fixed",
+      "parent": "FL_calf",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "RR_hip",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-0.802851455917",
+        "upper": "0.802851455917",
+        "velocity": "21"
+      },
+      "name": "RR_hip_joint",
+      "parent": "trunk",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "RR_thigh_shoulder",
+      "limit": null,
+      "name": "RR_hip_fixed",
+      "parent": "RR_hip",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "RR_thigh",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-1.0471975512",
+        "upper": "4.18879020479",
+        "velocity": "21"
+      },
+      "name": "RR_thigh_joint",
+      "parent": "RR_hip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "RR_calf",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-2.69653369433",
+        "upper": "-0.916297857297",
+        "velocity": "21"
+      },
+      "name": "RR_calf_joint",
+      "parent": "RR_thigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "RR_foot",
+      "limit": null,
+      "name": "RR_foot_fixed",
+      "parent": "RR_calf",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "RL_hip",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-0.802851455917",
+        "upper": "0.802851455917",
+        "velocity": "21"
+      },
+      "name": "RL_hip_joint",
+      "parent": "trunk",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "RL_thigh_shoulder",
+      "limit": null,
+      "name": "RL_hip_fixed",
+      "parent": "RL_hip",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "RL_thigh",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-1.0471975512",
+        "upper": "4.18879020479",
+        "velocity": "21"
+      },
+      "name": "RL_thigh_joint",
+      "parent": "RL_hip",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "RL_calf",
+      "limit": {
+        "effort": "33.5",
+        "lower": "-2.69653369433",
+        "upper": "-0.916297857297",
+        "velocity": "21"
+      },
+      "name": "RL_calf_joint",
+      "parent": "RL_thigh",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": null,
+      "child": "RL_foot",
+      "limit": null,
+      "name": "RL_foot_fixed",
+      "parent": "RL_calf",
+      "type": "fixed"
+    }
+  ],
+  "link_names": [
+    "base",
+    "trunk",
+    "imu_link",
+    "FR_hip",
+    "FR_thigh_shoulder",
+    "FR_thigh",
+    "FR_calf",
+    "FR_foot",
+    "FL_hip",
+    "FL_thigh_shoulder",
+    "FL_thigh",
+    "FL_calf",
+    "FL_foot",
+    "RR_hip",
+    "RR_thigh_shoulder",
+    "RR_thigh",
+    "RR_calf",
+    "RR_foot",
+    "RL_hip",
+    "RL_thigh_shoulder",
+    "RL_thigh",
+    "RL_calf",
+    "RL_foot"
+  ],
+  "mesh_filenames": [
+    "meshes/calf.dae",
+    "meshes/hip.dae",
+    "meshes/thigh.dae",
+    "meshes/thigh_mirror.dae",
+    "meshes/trunk.dae"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "unitree_a1",
+  "robot_name_urdf": "a1",
+  "schema_version": "0.1.0",
+  "urdf_digest": "b6a68f8cab3e74fba915cce087aa48f20b4622bc006fd4439c315df28deb332c",
+  "urdf_path": "data/urdf_snapshots/unitree_a1/a1_ros1_pkg_2026-04-25/robot.urdf"
+}

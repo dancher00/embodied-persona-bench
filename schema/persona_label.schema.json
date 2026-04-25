@@ -27,7 +27,8 @@
         "unitree_a1",
         "turtlebot3_burger",
         "xlerobot",
-        "so_101"
+        "so_101",
+        "nao"
       ]
     },
     "urdf_digest": {
