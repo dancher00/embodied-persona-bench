@@ -17,7 +17,7 @@
 </head>
 <body>
   <div id="info">
-    <div><strong>URDF viewer</strong> — drag orbit (LMB), pan (RMB / Ctrl+LMB), zoom (scroll).</div>
+    <div><strong>URDF viewer</strong> — drag orbit (LMB), pan (RMB / Ctrl+LMB), zoom (scroll). Default <code>frame=ros</code> (Z-up→Y-up); <code>frame=raw</code> disables. <em>Hard-refresh (Ctrl+Shift+R) if the page was cached.</em></div>
     <div id="status">Loading…</div>
     <div id="err"></div>
   </div>
@@ -40,6 +40,8 @@
     import URDFLoader from 'urdf-loader';
 
     const params = new URLSearchParams(window.location.search);
+    /** `ros` (default): rotate whole model −90° about X so typical URDF Z-up matches Three.js Y-up grid. `raw`: no extra rotation. */
+    const frameMode = (params.get('frame') || 'ros').toLowerCase();
     const urdfRel = params.get('urdf') || 'data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf';
     const urdfURL = new URL(urdfRel.replace(/^\/+/, ''), window.location.origin + '/').href;
     const workingPath = LoaderUtils.extractUrlBase(urdfURL);
@@ -81,8 +83,15 @@
     loader.load(
       urdfURL,
       (robot) => {
-        scene.add(robot);
-        const box = new THREE.Box3().setFromObject(robot);
+        const pivot = new THREE.Group();
+        pivot.name = 'urdf_frame_pivot';
+        pivot.add(robot);
+        if (frameMode !== 'raw' && frameMode !== 'none') {
+          pivot.rotation.x = -Math.PI / 2;
+        }
+        scene.add(pivot);
+        pivot.updateMatrixWorld(true);
+        const box = new THREE.Box3().setFromObject(pivot);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z, 0.05);
@@ -92,7 +101,7 @@
         camera.updateProjectionMatrix();
         camera.position.copy(center).add(new THREE.Vector3(maxDim * 1.1, maxDim * 0.85, maxDim * 1.1));
         controls.update();
-        statusEl.textContent = `Loaded: ${urdfRel}`;
+        statusEl.textContent = `Loaded: ${urdfRel} · frame=${frameMode} · viewer v3`;
       },
       undefined,
       (err) => {

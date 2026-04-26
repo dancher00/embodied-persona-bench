@@ -53,7 +53,8 @@ def main() -> None:
     vhost = "127.0.0.1"
     vheight = 900
     urdf_rel = row["urdf_relative"].replace("\\", "/")
-    viewer_q = urllib.parse.urlencode({"urdf": urdf_rel})
+    # `v` busts iframe cache after viewer HTML changes; `frame=ros` aligns URDF Z-up with Three.js Y-up grid.
+    viewer_q = urllib.parse.urlencode({"urdf": urdf_rel, "frame": "ros", "v": "3"})
     viewer_url = f"http://{vhost}:{int(vport)}/tools/urdf_viewer/index.html?{viewer_q}"
     api_base = "http://127.0.0.1:8000"
 

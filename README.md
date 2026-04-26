@@ -56,6 +56,8 @@ python scripts/serve_urdf_viewer.py
 Then open (default SO-101):  
 `http://127.0.0.1:8765/tools/urdf_viewer/index.html?urdf=data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf`
 
+Query `frame=ros` (default) rotates the loaded model −90° about X so typical **URDF Z-up** matches the viewer grid (**Y-up**). Use `frame=raw` if a model is already authored for Y-up and looks wrong.
+
 Uses [urdf-loader](https://www.npmjs.com/package/urdf-loader) + Three.js from CDN (see [live examples](https://gkjohnson.github.io/urdf-loaders/javascript/example/bundle/)).  
 **Thumbnail PNG** from STLs only (no URDF tree): `scripts/render_meshes_preview.py` / `close_loop_so101.py`.
 

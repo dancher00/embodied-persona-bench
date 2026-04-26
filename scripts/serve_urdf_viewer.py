@@ -23,6 +23,10 @@ class CORSRequestHandler(http.server.SimpleHTTPRequestHandler):
     """Allow local tooling (e.g. Streamlit iframe) to load assets."""
 
     def end_headers(self) -> None:
+        # Browsers cache file://-like static pages aggressively; avoid stale URDF viewer JS/HTML.
+        clean = self.path.split("?", 1)[0]
+        if "tools/urdf_viewer/" in clean and clean.endswith(".html"):
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
         self.send_header("Access-Control-Allow-Origin", "*")
         super().end_headers()
 
