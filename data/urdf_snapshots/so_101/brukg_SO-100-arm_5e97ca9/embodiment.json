@@ -134,5 +134,5 @@
   "robot_name_urdf": "so_arm_100_5dof",
   "schema_version": "0.1.0",
   "urdf_digest": "3e7d38c1fb858ee2e41e1ca84a129aed76a21558169dd1a1e968a4b2e0604a5a",
-  "urdf_path": "/home/danya/nips2026/embodied-persona-bench/data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf"
+  "urdf_path": "/home/erkhovartem/embodied-persona-bench/data/urdf_snapshots/so_101/brukg_SO-100-arm_5e97ca9/robot.urdf"
 }

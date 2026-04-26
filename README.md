@@ -28,8 +28,8 @@ Work in progress, targeting **NeurIPS 2026 Evaluations & Datasets** style contri
 ## Quick start
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+conda create -n embodied-persona-bench python=3.10 -y
+conda activate embodied-persona-bench
 pip install -e ".[dev]"
 python scripts/extract_urdf_features.py --urdf path/to/robot.urdf
 # SO-101 / SO-100 (same mechanics) — extract features + write embodiment.json:
@@ -62,11 +62,53 @@ Uses [urdf-loader](https://www.npmjs.com/package/urdf-loader) + Three.js from CD
 ## Annotation UI (Streamlit)
 
 ```bash
-pip install -e ".[annotate]"
+pip install -e ".[annotate,api]"
+python -m uvicorn tools.ratings_api:app --host 127.0.0.1 --port 8000
 streamlit run tools/annotate_app.py
 ```
 
-Pick a row from `data/manifest.csv`; the app **embeds** the Three.js URDF viewer in the left column (iframe to `serve_urdf_viewer.py`). Optional matplotlib thumbnail lives in a collapsed expander. Then fill OCEAN / behavior / optional text — **download JSON** or **save** under `data/labels/by_annotator/<annotator_id>/<sample_id>.json` (validates against `schema/persona_label.schema.json`).
+Pick a row from `data/manifest.csv`; the app **embeds** the Three.js URDF viewer in the left column (iframe to `serve_urdf_viewer.py`). Optional matplotlib thumbnail lives in a collapsed expander. Then fill OCEAN / behavior / optional text — **download JSON** or **submit rating (API)** to SQLite (validates against `schema/persona_label.schema.json`).
+
+Ratings API helpers:
+- `GET /health` — liveness check
+- `GET /ratings?limit=100` — recent ratings JSON
+- `GET /ratings.csv` — CSV export
+- `POST /ratings` — create/update by unique pair `(annotator_id, sample_id)`
+
+## Run in local network (LAN)
+
+If you want other devices in the same network to open the app and submit ratings, run all services bound to `0.0.0.0` on the host machine.
+
+Host machine (from repo root, in `conda` env):
+
+```bash
+# Terminal 1: URDF static viewer (Three.js assets)
+python scripts/serve_urdf_viewer.py --host 0.0.0.0 --port 8765
+
+# Terminal 2: Ratings API (SQLite)
+python -m uvicorn tools.ratings_api:app --host 0.0.0.0 --port 8000
+
+# Terminal 3: Streamlit UI
+streamlit run tools/annotate_app.py --server.address 0.0.0.0 --server.port 8501
+```
+
+Then share this URL with clients in the same LAN:
+
+- `http://<HOST_IP>:8501`
+
+Where `<HOST_IP>` is the host machine local IP (example: `192.168.31.153`).
+
+Client-side Streamlit settings (sidebar):
+
+- `Viewer host`: `<HOST_IP>`
+- `Viewer port`: `8765`
+- `API base URL`: `http://<HOST_IP>:8000`
+
+Quick checks from a client device:
+
+- `http://<HOST_IP>:8765/tools/urdf_viewer/index.html` (viewer responds)
+- `http://<HOST_IP>:8000/health` (API responds)
+- `http://<HOST_IP>:8501` (annotation UI opens)
 
 ## Citation
 
