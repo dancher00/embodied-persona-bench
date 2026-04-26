@@ -3,22 +3,35 @@
 
 from __future__ import annotations
 
+import csv
 import json
+import os
 import sqlite3
+import time
+from collections import defaultdict, deque
 from io import StringIO
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-import csv
 
 import jsonschema
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel, Field
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "persona_label.schema.json"
 DB_PATH = REPO_ROOT / "data" / "ratings.sqlite3"
+API_TOKEN = os.environ.get("EPB_API_TOKEN", "")
+MAX_BODY_BYTES = int(os.environ.get("EPB_MAX_BODY_BYTES", "131072"))
+RATE_LIMIT_PER_MIN = int(os.environ.get("EPB_RATE_LIMIT_PER_MIN", "60"))
+ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get("EPB_CORS_ORIGINS", "http://127.0.0.1:8501,http://localhost:8501").split(",")
+    if origin.strip()
+]
+RATE_BUCKETS: dict[str, deque[float]] = defaultdict(deque)
 
 
 def utc_now_iso() -> str:
@@ -66,6 +79,46 @@ class RatingIn(BaseModel):
 
 app = FastAPI(title="Embodied Persona Ratings API", version="0.1.0")
 SCHEMA = load_schema()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
+
+
+def require_token(request: Request) -> None:
+    expected = API_TOKEN.strip()
+    if not expected:
+        return
+    auth = request.headers.get("Authorization", "")
+    if auth != f"Bearer {expected}":
+        raise HTTPException(status_code=401, detail="invalid or missing bearer token")
+
+
+def enforce_body_limit(request: Request, raw_body: bytes) -> None:
+    content_length = request.headers.get("Content-Length")
+    if content_length:
+        try:
+            if int(content_length) > MAX_BODY_BYTES:
+                raise HTTPException(status_code=413, detail="request body too large")
+        except ValueError:
+            raise HTTPException(status_code=400, detail="invalid Content-Length header")
+    if len(raw_body) > MAX_BODY_BYTES:
+        raise HTTPException(status_code=413, detail="request body too large")
+
+
+def enforce_rate_limit(request: Request) -> None:
+    limit = max(1, RATE_LIMIT_PER_MIN)
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    window_start = now - 60.0
+    bucket = RATE_BUCKETS[client_ip]
+    while bucket and bucket[0] < window_start:
+        bucket.popleft()
+    if len(bucket) >= limit:
+        raise HTTPException(status_code=429, detail="rate limit exceeded")
+    bucket.append(now)
 
 
 @app.get("/health")
@@ -74,7 +127,18 @@ def health() -> dict[str, str]:
 
 
 @app.post("/ratings")
-def create_rating(payload: RatingIn) -> dict[str, Any]:
+async def create_rating(request: Request) -> dict[str, Any]:
+    require_token(request)
+    enforce_rate_limit(request)
+    raw_body = await request.body()
+    enforce_body_limit(request, raw_body)
+    try:
+        payload = RatingIn.model_validate(json.loads(raw_body.decode("utf-8")))
+    except json.JSONDecodeError as err:
+        raise HTTPException(status_code=400, detail="invalid JSON body") from err
+    except Exception as err:
+        raise HTTPException(status_code=400, detail=f"invalid payload: {err}") from err
+
     annotator = payload.annotator_id.strip().lower()
     if not annotator or not all(c.isalnum() or c in "_-" for c in annotator):
         raise HTTPException(status_code=400, detail="invalid annotator_id")

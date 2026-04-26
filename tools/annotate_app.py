@@ -48,29 +48,13 @@ def main() -> None:
     choice = st.selectbox("Sample", sample_ids, index=0)
     row = next(r for r in rows if r["sample_id"] == choice)
 
-    st.sidebar.divider()
-    st.sidebar.subheader("URDF viewer server (Three.js)")
-    vport = st.sidebar.number_input("Viewer port", min_value=1024, max_value=65535, value=8765, step=1)
-    vhost = st.sidebar.text_input("Viewer host", value="127.0.0.1")
-    vheight = st.sidebar.number_input(
-        "Embedded viewer height (px)",
-        min_value=480,
-        max_value=1600,
-        value=900,
-        step=20,
-    )
+    vport = 8765
+    vhost = "127.0.0.1"
+    vheight = 900
     urdf_rel = row["urdf_relative"].replace("\\", "/")
     viewer_q = urllib.parse.urlencode({"urdf": urdf_rel})
     viewer_url = f"http://{vhost}:{int(vport)}/tools/urdf_viewer/index.html?{viewer_q}"
-    st.sidebar.markdown(f"[Open **3D URDF** in new tab]({viewer_url})")
-    st.sidebar.caption(
-        f"Same URL is embedded in the main layout. From repo root:  \n"
-        f"`python scripts/serve_urdf_viewer.py --port {int(vport)}`"
-    )
-    st.sidebar.divider()
-    st.sidebar.subheader("Ratings API (SQLite)")
-    api_base = st.sidebar.text_input("API base URL", value="http://127.0.0.1:8000").strip().rstrip("/")
-    st.sidebar.caption("Run from repo root:  \n`uvicorn tools.ratings_api:app --host 127.0.0.1 --port 8000`")
+    api_base = "http://127.0.0.1:8000"
 
     emb_path = REPO_ROOT / row["embodiment_json_relative"]
     if not emb_path.is_file():
@@ -93,6 +77,7 @@ def main() -> None:
         value="",
         key="annotator_id",
     ).strip().lower()
+    api_token = st.text_input("API bearer token (optional)", value="", type="password")
 
     def _annotator_ok(s: str) -> bool:
         if not s or len(s) > 48:
@@ -181,7 +166,10 @@ def main() -> None:
             req = urllib.request.Request(
                 url=f"{api_base}/ratings",
                 data=body,
-                headers={"Content-Type": "application/json"},
+                headers={
+                    "Content-Type": "application/json",
+                    **({"Authorization": f"Bearer {api_token}"} if api_token else {}),
+                },
                 method="POST",
             )
             try:

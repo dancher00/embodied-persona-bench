@@ -63,6 +63,8 @@ Uses [urdf-loader](https://www.npmjs.com/package/urdf-loader) + Three.js from CD
 
 ```bash
 pip install -e ".[annotate,api]"
+export EPB_API_TOKEN="change-me-strong-token"
+export EPB_CORS_ORIGINS="http://127.0.0.1:8501,http://localhost:8501"
 python -m uvicorn tools.ratings_api:app --host 127.0.0.1 --port 8000
 streamlit run tools/annotate_app.py
 ```
@@ -75,6 +77,12 @@ Ratings API helpers:
 - `GET /ratings.csv` — CSV export
 - `POST /ratings` — create/update by unique pair `(annotator_id, sample_id)`
 
+Security env vars for API:
+- `EPB_API_TOKEN` — required bearer token for `POST /ratings` (if unset, auth is disabled for local dev)
+- `EPB_CORS_ORIGINS` — comma-separated allowed origins
+- `EPB_RATE_LIMIT_PER_MIN` — requests/minute/IP for `POST /ratings` (default `60`)
+- `EPB_MAX_BODY_BYTES` — max request size in bytes (default `131072`)
+
 ## Run in local network (LAN)
 
 If you want other devices in the same network to open the app and submit ratings, run all services bound to `0.0.0.0` on the host machine.
@@ -86,6 +94,8 @@ Host machine (from repo root, in `conda` env):
 python scripts/serve_urdf_viewer.py --host 0.0.0.0 --port 8765
 
 # Terminal 2: Ratings API (SQLite)
+export EPB_API_TOKEN="change-me-strong-token"
+export EPB_CORS_ORIGINS="http://<HOST_IP>:8501"
 python -m uvicorn tools.ratings_api:app --host 0.0.0.0 --port 8000
 
 # Terminal 3: Streamlit UI
@@ -103,12 +113,49 @@ Client-side Streamlit settings (sidebar):
 - `Viewer host`: `<HOST_IP>`
 - `Viewer port`: `8765`
 - `API base URL`: `http://<HOST_IP>:8000`
+- `API bearer token`: same value as `EPB_API_TOKEN`
 
 Quick checks from a client device:
 
 - `http://<HOST_IP>:8765/tools/urdf_viewer/index.html` (viewer responds)
 - `http://<HOST_IP>:8000/health` (API responds)
 - `http://<HOST_IP>:8501` (annotation UI opens)
+
+## Docker (single container, 3 services)
+
+For active development, use bind mount (no rebuild needed after code edits):
+
+```bash
+cd docker
+export EPB_API_TOKEN="change-me-strong-token"
+export EPB_CORS_ORIGINS="http://<HOST_IP>:8501"
+docker compose -f docker-compose.dev.yml up
+```
+
+This mode mounts the repo into the container (`..:/app`), so app changes apply on restart without rebuilding an image.
+
+If you need an immutable image for deployment, use the Dockerfile flow:
+
+```bash
+cd docker
+docker build -f Dockerfile -t embodied-persona-bench:local ..
+docker run --rm -it \
+  -p 8501:8501 -p 8000:8000 -p 8765:8765 \
+  -e EPB_API_TOKEN="change-me-strong-token" \
+  -e EPB_CORS_ORIGINS="http://<HOST_IP>:8501" \
+  embodied-persona-bench:local
+```
+
+Container starts:
+- Streamlit: `8501`
+- Ratings API: `8000`
+- URDF viewer static server: `8765`
+
+Optional overrides:
+- `HOST_ADDR` (default `0.0.0.0`)
+- `VIEWER_PORT` (default `8765`)
+- `API_PORT` (default `8000`)
+- `STREAMLIT_PORT` (default `8501`)
 
 ## Citation
 
