@@ -5,6 +5,8 @@ from __future__ import annotations
 import csv
 import json
 import urllib.parse
+import urllib.request
+import urllib.error
 from pathlib import Path
 
 import jsonschema
@@ -34,8 +36,7 @@ def main() -> None:
     st.title("Embodied persona annotation")
     st.caption(
         "Rate the **intended public-facing persona** of this robot using the **embedded 3D URDF** "
-        "(left) and the embodiment summary. If the 3D panel is empty, start the static server from the sidebar. "
-        "Do not claim capabilities absent from the summary."
+        "view. If the 3D panel is empty, start the static server from the sidebar."
     )
 
     rows = load_manifest_rows()
@@ -47,57 +48,28 @@ def main() -> None:
     choice = st.selectbox("Sample", sample_ids, index=0)
     row = next(r for r in rows if r["sample_id"] == choice)
 
-    st.sidebar.divider()
-    st.sidebar.subheader("URDF viewer server (Three.js)")
-    vport = st.sidebar.number_input("Viewer port", min_value=1024, max_value=65535, value=8765, step=1)
-    vhost = st.sidebar.text_input("Viewer host", value="127.0.0.1")
-    vheight = st.sidebar.number_input(
-        "Embedded viewer height (px)",
-        min_value=320,
-        max_value=1200,
-        value=560,
-        step=20,
-    )
+    vport = 8765
+    vhost = "127.0.0.1"
+    vheight = 900
     urdf_rel = row["urdf_relative"].replace("\\", "/")
     viewer_q = urllib.parse.urlencode({"urdf": urdf_rel})
     viewer_url = f"http://{vhost}:{int(vport)}/tools/urdf_viewer/index.html?{viewer_q}"
-    st.sidebar.markdown(f"[Open **3D URDF** in new tab]({viewer_url})")
-    st.sidebar.caption(
-        f"Same URL is embedded in the main layout. From repo root:  \n"
-        f"`python scripts/serve_urdf_viewer.py --port {int(vport)}`"
-    )
+    api_base = "http://127.0.0.1:8000"
 
     emb_path = REPO_ROOT / row["embodiment_json_relative"]
-    img_path = REPO_ROOT / row["render_relative"]
     if not emb_path.is_file():
         st.error(f"Missing embodiment: {emb_path}")
         st.stop()
     embodiment = json.loads(emb_path.read_text(encoding="utf-8"))
     digest = embodiment.get("urdf_digest", "")
 
-    c1, c2 = st.columns([1, 1])
-    with c1:
-        st.subheader("Robot (URDF + meshes)")
-        st.caption("Drag to orbit · scroll to zoom (same viewer as `serve_urdf_viewer.py`).")
-        components.iframe(src=viewer_url, height=int(vheight), scrolling=False)
-        st.caption(
-            "Blank panel → start `python scripts/serve_urdf_viewer.py` with the **Viewer host/port** "
-            "from the sidebar."
-        )
-        with st.expander("Static matplotlib thumbnail (offline fallback)", expanded=False):
-            if img_path.is_file():
-                st.image(str(img_path), use_container_width=True)
-            else:
-                st.caption(f"No file at `{img_path.relative_to(REPO_ROOT)}`")
-    with c2:
-        st.subheader("Embodiment summary")
-        st.write(
-            f"**robot_family (manifest):** `{row['robot_family']}`  \n"
-            f"**split:** `{row.get('split', '')}`  \n"
-            f"**urdf_digest:** `{digest[:16]}…`"
-        )
-        with st.expander("Full `embodiment.json`", expanded=False):
-            st.json(embodiment)
+    st.subheader("Robot (URDF + meshes)")
+    st.caption("Drag to orbit · scroll to zoom (same viewer as `serve_urdf_viewer.py`).")
+    components.iframe(src=viewer_url, height=int(vheight), scrolling=False)
+    st.caption(
+        "Blank panel → start `python scripts/serve_urdf_viewer.py` with the **Viewer host/port** "
+        "from the sidebar."
+    )
 
     st.divider()
     annotator = st.text_input(
@@ -105,6 +77,7 @@ def main() -> None:
         value="",
         key="annotator_id",
     ).strip().lower()
+    api_token = st.text_input("API bearer token (optional)", value="", type="password")
 
     def _annotator_ok(s: str) -> bool:
         if not s or len(s) > 48:
@@ -112,7 +85,7 @@ def main() -> None:
         return all(c.isalnum() or c in "_-" for c in s)
 
     if not _annotator_ok(annotator):
-        st.info("Set annotator id (1–48 chars: letters, digits, `_`, `-`) to enable **Save to repository**.")
+        st.info("Set annotator id (1–48 chars: letters, digits, `_`, `-`) to enable **Submit rating (API)**.")
 
     sid = row["sample_id"]
     st.subheader("OCEAN (1–5)")
@@ -175,9 +148,6 @@ def main() -> None:
     except jsonschema.ValidationError as ve:
         err = str(ve.message)
 
-    st.subheader("Preview JSON")
-    st.code(json.dumps(label, indent=2, sort_keys=True), language="json")
-
     dl = st.download_button(
         "Download JSON",
         data=json.dumps(label, indent=2, sort_keys=True) + "\n",
@@ -188,18 +158,31 @@ def main() -> None:
     if dl:
         st.success("Download started.")
 
-    out_dir = REPO_ROOT / "data" / "labels" / "by_annotator" / annotator
-    out_path = out_dir / f"{row['sample_id']}.json"
-    if st.button("Save to repository", disabled=not _annotator_ok(annotator) or bool(err)):
+    if st.button("Submit rating (API)", disabled=not _annotator_ok(annotator) or bool(err)):
         if err:
             st.error(err)
         else:
-            out_dir.mkdir(parents=True, exist_ok=True)
-            out_path.write_text(
-                json.dumps(label, indent=2, sort_keys=True) + "\n",
-                encoding="utf-8",
+            body = json.dumps({"annotator_id": annotator, "label": label}).encode("utf-8")
+            req = urllib.request.Request(
+                url=f"{api_base}/ratings",
+                data=body,
+                headers={
+                    "Content-Type": "application/json",
+                    **({"Authorization": f"Bearer {api_token}"} if api_token else {}),
+                },
+                method="POST",
             )
-            st.success(f"Wrote `{out_path.relative_to(REPO_ROOT)}`")
+            try:
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    response_data = json.loads(resp.read().decode("utf-8"))
+                st.success(
+                    f"Saved rating id={response_data.get('id')} at {response_data.get('created_at')} (UTC)."
+                )
+            except urllib.error.HTTPError as http_err:
+                details = http_err.read().decode("utf-8", errors="replace")
+                st.error(f"API error {http_err.code}: {details}")
+            except urllib.error.URLError as url_err:
+                st.error(f"Failed to reach API at {api_base}: {url_err.reason}")
 
 
 if __name__ == "__main__":

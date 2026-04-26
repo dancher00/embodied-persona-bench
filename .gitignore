@@ -42,5 +42,16 @@ data/renders/_bulk/
 data/raw_labels/
 # Optional: ignore local annotation trials
 # data/labels/by_annotator/
+# Local SQLite artifacts
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.sqlite-journal
+*.sqlite3-journal
+*.sqlite-wal
+*.sqlite3-wal
+*.sqlite-shm
+*.sqlite3-shm
 *.zip
 *.bag
