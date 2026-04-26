@@ -35,8 +35,9 @@ def main() -> None:
     st.set_page_config(page_title="Embodied persona — annotation", layout="wide")
     st.title("Embodied persona annotation")
     st.caption(
-        "Rate the **intended public-facing persona** of this robot using the **embedded 3D URDF** "
-        "view. If the 3D panel is empty, start the static server from the sidebar."
+        "Rate the **intended public-facing persona** using the **embedded 3D URDF** and the "
+        "**embodiment summary** (expand below). Submit to the ratings API or download JSON. "
+        "Do not claim capabilities absent from the embodiment data."
     )
 
     rows = load_manifest_rows()
@@ -64,12 +65,19 @@ def main() -> None:
     digest = embodiment.get("urdf_digest", "")
 
     st.subheader("Robot (URDF + meshes)")
-    st.caption("Drag to orbit · scroll to zoom (same viewer as `serve_urdf_viewer.py`).")
+    st.caption(
+        "Drag to orbit · scroll to zoom. The iframe loads the same page as "
+        "`python scripts/serve_urdf_viewer.py` (here: **127.0.0.1:8765**). "
+        "On another machine, open Streamlit via the host LAN IP and run the viewer/API bound to "
+        "`0.0.0.0` — see repo `README.md`."
+    )
     components.iframe(src=viewer_url, height=int(vheight), scrolling=False)
     st.caption(
-        "Blank panel → start `python scripts/serve_urdf_viewer.py` with the **Viewer host/port** "
-        "from the sidebar."
+        "Blank 3D panel → start the viewer from the repo root, e.g. "
+        "`python scripts/serve_urdf_viewer.py --host 127.0.0.1 --port 8765`."
     )
+    with st.expander("Embodiment summary (`embodiment.json`)", expanded=False):
+        st.json(embodiment)
 
     st.divider()
     annotator = st.text_input(

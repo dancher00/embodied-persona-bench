@@ -69,7 +69,7 @@ python -m uvicorn tools.ratings_api:app --host 127.0.0.1 --port 8000
 streamlit run tools/annotate_app.py
 ```
 
-Pick a row from `data/manifest.csv`; the app **embeds** the Three.js URDF viewer in the left column (iframe to `serve_urdf_viewer.py`). Optional matplotlib thumbnail lives in a collapsed expander. Then fill OCEAN / behavior / optional text — **download JSON** or **submit rating (API)** to SQLite (validates against `schema/persona_label.schema.json`).
+Pick a row from `data/manifest.csv`; the app **embeds** the Three.js URDF viewer (iframe → `serve_urdf_viewer.py` on **127.0.0.1:8765**) and shows **`embodiment.json`** in an expander. Fill OCEAN / behavior / optional text — **download JSON** or **submit rating (API)** to SQLite at **127.0.0.1:8000** (validates against `schema/persona_label.schema.json`). Optional manifest thumbnails are for other tooling; use `scripts/render_meshes_preview.py` where STLs exist.
 
 Ratings API helpers:
 - `GET /health` — liveness check
@@ -108,12 +108,9 @@ Then share this URL with clients in the same LAN:
 
 Where `<HOST_IP>` is the host machine local IP (example: `192.168.31.153`).
 
-Client-side Streamlit settings (sidebar):
+The Streamlit app currently hardcodes **127.0.0.1** for the viewer iframe and API URL, so the browser that runs the UI should be on the **same machine** as `serve_urdf_viewer.py`, `uvicorn`, and Streamlit (typical lab setup), or use **Docker** on the host so all three services share one origin stack. Remote laptops opening only `http://<HOST_IP>:8501` would still try to load the viewer from the laptop’s own loopback — that path needs a future configurable host if you want cross-machine browsers.
 
-- `Viewer host`: `<HOST_IP>`
-- `Viewer port`: `8765`
-- `API base URL`: `http://<HOST_IP>:8000`
-- `API bearer token`: same value as `EPB_API_TOKEN`
+**API bearer token** in the UI: same value as `EPB_API_TOKEN` when the API enforces auth.
 
 Quick checks from a client device:
 

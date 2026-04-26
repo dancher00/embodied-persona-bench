@@ -2,21 +2,36 @@
 
 ## Goal
 
-Given the **same evidence** every model sees (URDF-derived summary + canonical render), produce a **structured persona** that is plausible for human–robot interaction design and **consistent with embodiment** (locomotion class, manipulation affordances, rough scale).
+Given the **same evidence** every annotator sees (URDF-derived summary + 3D model), produce a **structured persona** that is plausible for human–robot interaction design and **consistent with embodiment** (locomotion class, manipulation affordances, rough scale).
 
-## Tooling (local)
+## Tooling
+
+### Local (three processes)
 
 ```bash
-pip install -e ".[annotate]"
+pip install -e ".[annotate,api]"
+# Terminal 1 — static files + URDF viewer (default 127.0.0.1:8765)
+python scripts/serve_urdf_viewer.py
+# Terminal 2 — ratings API (default 127.0.0.1:8000)
+export EPB_API_TOKEN="change-me-strong-token"   # optional; if set, Streamlit must use the same token
+python -m uvicorn tools.ratings_api:app --host 127.0.0.1 --port 8000
+# Terminal 3 — UI
 streamlit run tools/annotate_app.py
 ```
 
-Reads `data/manifest.csv`, **embeds** the Three.js URDF viewer (iframe; run `python scripts/serve_urdf_viewer.py` at repo root with matching host/port), optional matplotlib thumbnail in an expander, full `embodiment.json`, validates against `schema/persona_label.schema.json`, then **download** or **save** to `data/labels/by_annotator/<annotator_id>/<sample_id>.json`.
+The Streamlit app reads `data/manifest.csv`, **embeds** the Three.js URDF viewer (iframe → `serve_urdf_viewer.py`), shows **`embodiment.json`** in an expander, validates against `schema/persona_label.schema.json`, then either **Submit rating (API)** (`POST /ratings` → SQLite `data/ratings.sqlite3`) or **Download JSON**.
+
+**LAN / multi-seat:** bind viewer and API to `0.0.0.0`, set `EPB_CORS_ORIGINS` to your Streamlit origin (e.g. `http://<host-ip>:8501`), and open Streamlit using the host URL. Details and env vars: repo `README.md`.
+
+### Docker (one container)
+
+See **`README.md` → Docker** and `docker/docker-compose.dev.yml` + `docker/entrypoint.sh` (viewer + API + Streamlit).
 
 ## Evidence provided to annotators
 
-1. Canonical render(s) of the robot (fixed camera / lighting — defined per release).
-2. Machine-readable **embodiment summary** (joint counts, mobility class, gripper / tool frame flags, joint limits when present, bounding-box scale). Annotators should treat this summary as ground truth for what the robot **can** do physically.
+1. **Interactive 3D URDF** (meshes as shipped in `data/urdf_snapshots/...`).
+2. Machine-readable **embodiment summary** (`embodiment.json`: joint counts, flags, mesh list, `urdf_digest`). Annotators should treat this as ground truth for what the robot **can** do physically.
+3. **Canonical render** paths may appear in `manifest.csv` for tooling or thumbnails; the current Streamlit UI does not show manifest PNGs by default.
 
 ## Output
 
