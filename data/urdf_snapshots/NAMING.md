@@ -27,6 +27,8 @@ Use **exactly** these directory names (match `schema/persona_label.schema.json`)
 | `xlerobot`            | XLeRobot |
 | `so_101`              | SO-101 |
 | `nao`                 | SoftBank / Aldebaran NAO (humanoid) |
+| `pepper`              | SoftBank Pepper (humanoid / wheeled base) |
+| `lekiwi`              | LeKiwi mobile manipulator (SIGRobotics-UIUC) |
 
 ## `snapshot_id` (your version label)
 

@@ -1,0 +1,11 @@
+upstream_url: https://github.com/SIGRobotics-UIUC/LeKiwi
+upstream_path: URDF/
+upstream_commit: f93df541b4f690c31f64b22073e63ee0fdb31991
+license: See upstream repository (no LICENSE file at repo root at snapshot time; confirm before redistribution).
+retrieved_date: 2026-04-28
+notes: |
+  LeKiwi mobile manipulator URDF from UIUC SIGRobotics. Mesh paths are already relative (`meshes/*.stl`);
+  snapshot uses `robot.urdf` (upstream `LeKiwi.urdf`) + `meshes/` next to it. STLs use millimeter-scale
+  geometry with `scale="0.001 0.001 0.001"` in URDF.
+
+snapshot_contents: robot.urdf, meshes/*, embodiment.json, PROVENANCE.txt

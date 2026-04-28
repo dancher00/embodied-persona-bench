@@ -1,0 +1,13 @@
+upstream_url: https://github.com/jrl-umi3218/pepper_description
+upstream_commit: b953b44c39935dc4c9d4cffa15e733850a33e5df
+license: BSD-2-Clause (see LICENSE.upstream; CNRS-UM LIRMM, CNRS-AIST JRL, SoftBank Robotics Europe)
+retrieved_date: 2026-04-28
+notes: |
+  SoftBank Pepper (humanoid platform) URDF from jrl-umi3218 fork. robot.urdf rewrites
+  package://pepper_description/meshes/ → meshes/ for offline / browser use.
+
+  Upstream HeadPitch.dae references juliette_head.png, which is not in the repository;
+  added meshes/juliette_head.png as a copy of juliette_face.png so texture loads succeed
+  (face texture may appear where head base map was intended).
+
+snapshot_contents: robot.urdf (from urdf/pepper.urdf), meshes/*, LICENSE.upstream, embodiment.json, PROVENANCE.txt

@@ -30,7 +30,9 @@
         "turtlebot3_burger",
         "xlerobot",
         "so_101",
-        "nao"
+        "nao",
+        "pepper",
+        "lekiwi"
       ]
     },
     "urdf_digest": {

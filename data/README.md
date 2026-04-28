@@ -23,6 +23,10 @@ data/
 
 **Unitree H2 (v0 snapshot):** `unitree_h2/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/h2_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/h2_description) @ `202c598`. `robot.urdf` (upstream `H2.urdf`) + `meshes/*.stl` (~13 MB). Manifest row `h2_unitree_ros_202c598`; matplotlib preview path reserved.
 
+**Pepper (v0 snapshot):** `pepper/jrl_b953b44/` — [jrl-umi3218/pepper_description](https://github.com/jrl-umi3218/pepper_description) @ `b953b44` (BSD-2-Clause). `robot.urdf` + `meshes/` (~11 MB, DAE + STL + PNG). `juliette_head.png` is absent upstream; snapshot duplicates `juliette_face.png` under that name so the head Collada loads without 404.
+
+**LeKiwi (v0 snapshot):** `lekiwi/sig_uiuc_f93df541/` — [SIGRobotics-UIUC/LeKiwi](https://github.com/SIGRobotics-UIUC/LeKiwi) `URDF/` @ `f93df541`. Mobile base + arm; `robot.urdf` (upstream `LeKiwi.urdf`) + `meshes/*.stl` (**~59 MB** — largest v0 snapshot). Manifest `lekiwi_sig_uiuc_f93df541`; matplotlib preview path reserved.
+
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 
 ## Robot families (v0)
@@ -36,6 +40,8 @@ For NeurIPS Evaluations & Datasets track, the public release will be hosted on a
 | `xlerobot`       | Pin exact hardware revision / URDF package version |
 | `so_101`         | SO-100/SO-101 arm (flat URDF + meshes); see `brukg_SO-100-arm_5e97ca9/` |
 | `nao`            | SoftBank / Aldebaran NAO; see `nao/jrl_v40_6f4e94b/` |
+| `pepper`         | SoftBank Pepper; see `pepper/jrl_b953b44/` |
+| `lekiwi`         | LeKiwi (UIUC); see `lekiwi/sig_uiuc_f93df541/` |
 
 Record provenance (upstream repo URL + commit or ROS package version) in `manifest.csv` or dataset card.
 

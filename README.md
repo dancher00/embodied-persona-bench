@@ -2,12 +2,12 @@
 
 **Embodiment-grounded robot persona specification:** benchmark resources, dataset protocol, and tooling built around versioned URDF snapshots and human-annotated persona labels.
 
-Initial hardware-seeded scope (v0): Unitree A1 / R1 / H2, TurtleBot3 Burger, XLeRobot, SO-101, NAO. URDF-derived graph + tabular features → structured JSON (OCEAN + behavioral scales ± short text).
+Initial hardware-seeded scope (v0): Unitree A1 / R1 / H2, TurtleBot3 Burger, XLeRobot, SO-101, NAO, Pepper, LeKiwi. URDF-derived graph + tabular features → structured JSON (OCEAN + behavioral scales ± short text).
 
 ## Status
 
 Work in progress, targeting **NeurIPS 2026 Evaluations & Datasets** style contribution: **dataset + benchmark + baselines + human-grounded labels**.  
-**v0 shipped in-repo:** full **SO-101 / SO-100** slice plus curated URDF snapshots for **Unitree A1**, **R1**, **H2**, and **NAO** (see `data/manifest.csv`); TurtleBot3 / XLeRobot remain schema-only until pinned snapshots land.
+**v0 shipped in-repo:** full **SO-101 / SO-100** slice plus curated URDF snapshots for **Unitree A1**, **R1**, **H2**, **NAO**, **Pepper**, and **LeKiwi** (see `data/manifest.csv`); TurtleBot3 / XLeRobot remain schema-only until pinned snapshots land.
 
 ## For collaborators (what this is)
 
