@@ -25,6 +25,8 @@
       "type": "string",
       "enum": [
         "unitree_a1",
+        "unitree_r1",
+        "unitree_h2",
         "turtlebot3_burger",
         "xlerobot",
         "so_101",

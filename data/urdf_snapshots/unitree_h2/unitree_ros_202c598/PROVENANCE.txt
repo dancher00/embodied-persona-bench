@@ -1,0 +1,10 @@
+upstream_url: https://github.com/unitreerobotics/unitree_ros
+upstream_path: robots/h2_description
+upstream_commit: 202c59879872d0c8d61ab20b93eaedd9ec04b144
+license: See upstream unitree_ros repository (confirm license file at repo root).
+retrieved_date: 2026-04-27
+notes: |
+  Unitree H2 humanoid URDF. Mesh paths are relative (`meshes/*.stl`); snapshot uses `robot.urdf`
+  (upstream `H2.urdf`) + `meshes/` per repo NAMING.md.
+
+snapshot_contents: robot.urdf, meshes/*, embodiment.json, PROVENANCE.txt

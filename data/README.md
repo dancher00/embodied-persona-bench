@@ -19,6 +19,10 @@ data/
 
 **NAO (v0 snapshot):** `nao/jrl_v40_6f4e94b/` — NAO V40 humanoid from [jrl-umi3218/nao_description](https://github.com/jrl-umi3218/nao_description) @ `6f4e94b` (BSD-2-Clause). Includes `meshes/V40/*.dae` and shared `meshes/V40/textureNAO.png` for Collada textures. Many ROS `nao_description` trees omit meshes (separate install); this fork carries them in-repo.
 
+**Unitree R1 (v0 snapshot):** `unitree_r1/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/r1_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/r1_description) @ `202c598`. `robot.urdf` (upstream `R1.urdf`) + `meshes/*.STL` (~22 MB). Manifest row `r1_unitree_ros_202c598`; matplotlib preview path reserved.
+
+**Unitree H2 (v0 snapshot):** `unitree_h2/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/h2_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/h2_description) @ `202c598`. `robot.urdf` (upstream `H2.urdf`) + `meshes/*.stl` (~13 MB). Manifest row `h2_unitree_ros_202c598`; matplotlib preview path reserved.
+
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 
 ## Robot families (v0)
@@ -26,6 +30,8 @@ For NeurIPS Evaluations & Datasets track, the public release will be hosted on a
 | `robot_family`   | Notes |
 |------------------|--------|
 | `unitree_a1`     | Quadruped snapshot you pin in the manifest |
+| `unitree_r1`     | Unitree R1 humanoid; see `unitree_r1/unitree_ros_202c598/` |
+| `unitree_h2`     | Unitree H2 humanoid; see `unitree_h2/unitree_ros_202c598/` |
 | `turtlebot3_burger` | Differential drive |
 | `xlerobot`       | Pin exact hardware revision / URDF package version |
 | `so_101`         | SO-100/SO-101 arm (flat URDF + meshes); see `brukg_SO-100-arm_5e97ca9/` |

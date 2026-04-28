@@ -1,0 +1,617 @@
+{
+  "counts": {
+    "actuated_joints": 26,
+    "joint_types": {
+      "fixed": 13,
+      "revolute": 26
+    },
+    "joints": 39,
+    "links": 40
+  },
+  "flags": {
+    "has_end_effector_link": false,
+    "has_gripper_joint": false
+  },
+  "joints": [
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_hip_pitch_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.932153143",
+        "upper": "2.548180708",
+        "velocity": "18.8"
+      },
+      "name": "left_hip_pitch_joint",
+      "parent": "pelvis_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_hip_roll_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-1.047197551",
+        "upper": "1.745329252",
+        "velocity": "18.8"
+      },
+      "name": "left_hip_roll_joint",
+      "parent": "left_hip_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "left_hip_yaw_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.7402",
+        "upper": "2.7402",
+        "velocity": "18.8"
+      },
+      "name": "left_hip_yaw_joint",
+      "parent": "left_hip_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_knee_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-0.174532925",
+        "upper": "2.42600766",
+        "velocity": "18.8"
+      },
+      "name": "left_knee_joint",
+      "parent": "left_hip_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_ankle_A_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-0.89675",
+        "upper": "1.4099",
+        "velocity": "33.4"
+      },
+      "name": "left_ankle_A_joint",
+      "parent": "left_knee_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_ankle_A_rod_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "left_ankle_A_rod_joint",
+      "parent": "left_ankle_A_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_ankle_B_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.3999",
+        "upper": "0.92328",
+        "velocity": "33.4"
+      },
+      "name": "left_ankle_B_joint",
+      "parent": "left_knee_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_ankle_B_rod_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "left_ankle_B_rod_joint",
+      "parent": "left_ankle_B_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_ankle_pitch_link",
+      "limit": {
+        "effort": "50",
+        "lower": "-0.87266",
+        "upper": "0.57596",
+        "velocity": "30"
+      },
+      "name": "left_ankle_pitch_joint",
+      "parent": "left_knee_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_ankle_roll_link",
+      "limit": {
+        "effort": "50",
+        "lower": "-0.2618",
+        "upper": "0.2618",
+        "velocity": "30"
+      },
+      "name": "left_ankle_roll_joint",
+      "parent": "left_ankle_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_ankle_constraint_A_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "left_ankle_constraint_A_joint",
+      "parent": "left_ankle_roll_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_ankle_constraint_B_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "left_ankle_constraint_B_joint",
+      "parent": "left_ankle_roll_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_hip_pitch_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.932153143",
+        "upper": "2.548180708",
+        "velocity": "18.8"
+      },
+      "name": "right_hip_pitch_joint",
+      "parent": "pelvis_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_hip_roll_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-1.745329252",
+        "upper": "1.047197551",
+        "velocity": "18.8"
+      },
+      "name": "right_hip_roll_joint",
+      "parent": "right_hip_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "right_hip_yaw_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.7402",
+        "upper": "2.7402",
+        "velocity": "18.8"
+      },
+      "name": "right_hip_yaw_joint",
+      "parent": "right_hip_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_knee_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-0.17453",
+        "upper": "2.42600766",
+        "velocity": "18.8"
+      },
+      "name": "right_knee_joint",
+      "parent": "right_hip_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_ankle_A_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.4099",
+        "upper": "0.89675",
+        "velocity": "33.4"
+      },
+      "name": "right_ankle_A_joint",
+      "parent": "right_knee_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_ankle_A_rod_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "right_ankle_A_rod_joint",
+      "parent": "right_ankle_A_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_ankle_B_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-0.92328",
+        "upper": "1.3999",
+        "velocity": "33.4"
+      },
+      "name": "right_ankle_B_joint",
+      "parent": "right_knee_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_ankle_B_rod_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "right_ankle_B_rod_joint",
+      "parent": "right_ankle_B_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_ankle_pitch_link",
+      "limit": {
+        "effort": "50",
+        "lower": "-0.87266",
+        "upper": "0.57596",
+        "velocity": "30"
+      },
+      "name": "right_ankle_pitch_joint",
+      "parent": "right_knee_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_ankle_roll_link",
+      "limit": {
+        "effort": "50",
+        "lower": "-0.261799388",
+        "upper": "0.261799388",
+        "velocity": "30"
+      },
+      "name": "right_ankle_roll_joint",
+      "parent": "right_ankle_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_ankle_constraint_A_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "right_ankle_constraint_A_joint",
+      "parent": "right_ankle_roll_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_ankle_constraint_B_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "right_ankle_constraint_B_joint",
+      "parent": "right_ankle_roll_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "imu_in_pelvis_link",
+      "limit": {
+        "effort": "0",
+        "lower": "0",
+        "upper": "0",
+        "velocity": "0"
+      },
+      "name": "imu_in_pelvis_joint",
+      "parent": "pelvis_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "waist_roll_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-0.5236",
+        "upper": "0.5236",
+        "velocity": "18.8"
+      },
+      "name": "waist_roll_joint",
+      "parent": "pelvis_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "waist_yaw_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.618",
+        "upper": "2.618",
+        "velocity": "18.8"
+      },
+      "name": "waist_yaw_joint",
+      "parent": "waist_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_shoulder_pitch_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-3.1416",
+        "upper": "2.0944",
+        "velocity": "18.8"
+      },
+      "name": "left_shoulder_pitch_joint",
+      "parent": "waist_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_shoulder_roll_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-0.22689",
+        "upper": "2.4784",
+        "velocity": "18.8"
+      },
+      "name": "left_shoulder_roll_joint",
+      "parent": "left_shoulder_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "left_shoulder_yaw_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.9199",
+        "upper": "1.9199",
+        "velocity": "33.4"
+      },
+      "name": "left_shoulder_yaw_joint",
+      "parent": "left_shoulder_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "left_elbow_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-0.97564",
+        "upper": "2.1852",
+        "velocity": "33.4"
+      },
+      "name": "left_elbow_joint",
+      "parent": "left_shoulder_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "left_wrist_roll_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.9199",
+        "upper": "1.9199",
+        "velocity": "33.4"
+      },
+      "name": "left_wrist_roll_joint",
+      "parent": "left_elbow_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_shoulder_pitch_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-3.1416",
+        "upper": "2.0944",
+        "velocity": "18.8"
+      },
+      "name": "right_shoulder_pitch_joint",
+      "parent": "waist_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_shoulder_roll_link",
+      "limit": {
+        "effort": "60",
+        "lower": "-2.47849",
+        "upper": "0.2268",
+        "velocity": "18.8"
+      },
+      "name": "right_shoulder_roll_joint",
+      "parent": "right_shoulder_pitch_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "right_shoulder_yaw_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.9199",
+        "upper": "1.9199",
+        "velocity": "33.4"
+      },
+      "name": "right_shoulder_yaw_joint",
+      "parent": "right_shoulder_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "right_elbow_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-0.97564",
+        "upper": "2.1852",
+        "velocity": "33.4"
+      },
+      "name": "right_elbow_joint",
+      "parent": "right_shoulder_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "right_wrist_roll_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-1.9199",
+        "upper": "1.9199",
+        "velocity": "33.4"
+      },
+      "name": "right_wrist_roll_joint",
+      "parent": "right_elbow_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "head_pitch_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-0.62832",
+        "upper": "0.62832",
+        "velocity": "33.4"
+      },
+      "name": "head_pitch_joint",
+      "parent": "waist_yaw_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "head_yaw_link",
+      "limit": {
+        "effort": "33",
+        "lower": "-2.0071",
+        "upper": "2.0071",
+        "velocity": "33.4"
+      },
+      "name": "head_yaw_joint",
+      "parent": "head_pitch_link",
+      "type": "revolute"
+    }
+  ],
+  "link_names": [
+    "pelvis_link",
+    "left_hip_pitch_link",
+    "left_hip_roll_link",
+    "left_hip_yaw_link",
+    "left_knee_link",
+    "left_ankle_A_link",
+    "left_ankle_A_rod_link",
+    "left_ankle_B_link",
+    "left_ankle_B_rod_link",
+    "left_ankle_pitch_link",
+    "left_ankle_roll_link",
+    "left_ankle_constraint_A_link",
+    "left_ankle_constraint_B_link",
+    "right_hip_pitch_link",
+    "right_hip_roll_link",
+    "right_hip_yaw_link",
+    "right_knee_link",
+    "right_ankle_A_link",
+    "right_ankle_A_rod_link",
+    "right_ankle_B_link",
+    "right_ankle_B_rod_link",
+    "right_ankle_pitch_link",
+    "right_ankle_roll_link",
+    "right_ankle_constraint_A_link",
+    "right_ankle_constraint_B_link",
+    "imu_in_pelvis_link",
+    "waist_roll_link",
+    "waist_yaw_link",
+    "left_shoulder_pitch_link",
+    "left_shoulder_roll_link",
+    "left_shoulder_yaw_link",
+    "left_elbow_link",
+    "left_wrist_roll_link",
+    "right_shoulder_pitch_link",
+    "right_shoulder_roll_link",
+    "right_shoulder_yaw_link",
+    "right_elbow_link",
+    "right_wrist_roll_link",
+    "head_pitch_link",
+    "head_yaw_link"
+  ],
+  "mesh_filenames": [
+    "meshes/head_pitch_link.STL",
+    "meshes/head_yaw_link.STL",
+    "meshes/imu_in_pelvis_link.STL",
+    "meshes/left_ankle_A_link.STL",
+    "meshes/left_ankle_A_rod_link.STL",
+    "meshes/left_ankle_B_link.STL",
+    "meshes/left_ankle_B_rod_link.STL",
+    "meshes/left_ankle_constraint_A_link.STL",
+    "meshes/left_ankle_constraint_B_link.STL",
+    "meshes/left_ankle_pitch_link.STL",
+    "meshes/left_ankle_roll_link.STL",
+    "meshes/left_elbow_link.STL",
+    "meshes/left_hip_pitch_link.STL",
+    "meshes/left_hip_roll_link.STL",
+    "meshes/left_hip_yaw_link.STL",
+    "meshes/left_knee_collision.STL",
+    "meshes/left_knee_link.STL",
+    "meshes/left_shoulder_pitch_link.STL",
+    "meshes/left_shoulder_roll_link.STL",
+    "meshes/left_shoulder_yaw_link.STL",
+    "meshes/left_wrist_roll_link.STL",
+    "meshes/pelvis_link.STL",
+    "meshes/right_ankle_A_link.STL",
+    "meshes/right_ankle_A_rod_link.STL",
+    "meshes/right_ankle_B_link.STL",
+    "meshes/right_ankle_B_rod_link.STL",
+    "meshes/right_ankle_constraint_A_link.STL",
+    "meshes/right_ankle_constraint_B_link.STL",
+    "meshes/right_ankle_pitch_link.STL",
+    "meshes/right_ankle_roll_link.STL",
+    "meshes/right_elbow_link.STL",
+    "meshes/right_hip_pitch_link.STL",
+    "meshes/right_hip_roll_link.STL",
+    "meshes/right_hip_yaw_link.STL",
+    "meshes/right_knee_collision.STL",
+    "meshes/right_knee_link.STL",
+    "meshes/right_shoulder_pitch_link.STL",
+    "meshes/right_shoulder_roll_link.STL",
+    "meshes/right_shoulder_yaw_link.STL",
+    "meshes/right_wrist_roll_link.STL",
+    "meshes/waist_roll_link.STL",
+    "meshes/waist_yaw_link.STL"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "unitree_r1",
+  "robot_name_urdf": "R1",
+  "schema_version": "0.1.0",
+  "urdf_digest": "604bbd0c4e815b52ea2db822d45f552c0c53e15bb7e4b1790f806bd4edfe6b79",
+  "urdf_path": "data/urdf_snapshots/unitree_r1/unitree_ros_202c598/robot.urdf"
+}
