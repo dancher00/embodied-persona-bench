@@ -1,0 +1,12 @@
+upstream_url: https://github.com/ZebraDevs/fetch_ros
+upstream_path: fetch_description/robots/fetch.urdf, fetch_description/meshes/
+upstream_commit: d22b98f6c21577895f4d2e3a8bd54e329083732b
+upstream_package_version: 0.9.1 (fetch_description/package.xml at snapshot)
+license: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) per upstream package.xml
+retrieved_date: 2026-04-29
+notes: |
+  Fetch mobile manipulator URDF from ZebraDevs/fetch_ros (successor to fetchrobotics/fetch_ros).
+  All mesh URIs rewritten from `package://fetch_description/meshes/` to relative `meshes/` for
+  offline tooling and the static URDF viewer. Collada visuals reference `*_uv.png` in `meshes/`.
+
+snapshot_contents: robot.urdf, meshes/*, package.xml, embodiment.json, PROVENANCE.txt

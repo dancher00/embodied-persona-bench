@@ -27,6 +27,10 @@ data/
 
 **LeKiwi (v0 snapshot):** `lekiwi/sig_uiuc_f93df541/` — [SIGRobotics-UIUC/LeKiwi](https://github.com/SIGRobotics-UIUC/LeKiwi) `URDF/` @ `f93df541`. Mobile base + arm; `robot.urdf` (upstream `LeKiwi.urdf`) + `meshes/*.stl` (**~59 MB** — largest v0 snapshot). Manifest `lekiwi_sig_uiuc_f93df541`; matplotlib preview path reserved.
 
+**Fetch (v0 snapshot):** `fetch/fetch_ros_d22b98f/` — [ZebraDevs/fetch_ros](https://github.com/ZebraDevs/fetch_ros) `fetch_description` @ `d22b98f`. Mobile base + torso lift + 7-DOF arm + head; `robot.urdf` + `meshes/` (~20 MB, DAE + STL + PNG). Upstream declares **CC BY-NC-SA 4.0** in `package.xml`; confirm redistribution terms for your venue. Mesh URIs rewritten from `package://fetch_description/meshes/` to `meshes/`. Manifest `fetch_ros_d22b98f`; matplotlib preview path reserved.
+
+**PR2 (v0 snapshot):** `pr2/pr2_common_9a8e4fb/` — [PR2/pr2_common](https://github.com/PR2/pr2_common) `pr2_description` @ `9a8e4fb` (BSD). Dual-arm mobile manipulator; plain **`robot.urdf`** produced by expanding `robots/pr2.urdf.xacro` with the `xacro` tool (after rewriting `$(find pr2_description)/` includes to absolute paths), then mapping `package://pr2_description/meshes/` → `meshes/` and `package://pr2_description/materials/` → `materials/`. ~26 MB including Collada textures. Manifest `pr2_common_9a8e4fb`; matplotlib preview path reserved.
+
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 
 ## Robot families (v0)
@@ -42,6 +46,8 @@ For NeurIPS Evaluations & Datasets track, the public release will be hosted on a
 | `nao`            | SoftBank / Aldebaran NAO; see `nao/jrl_v40_6f4e94b/` |
 | `pepper`         | SoftBank Pepper; see `pepper/jrl_b953b44/` |
 | `lekiwi`         | LeKiwi (UIUC); see `lekiwi/sig_uiuc_f93df541/` |
+| `fetch`          | Fetch Robotics Fetch; see `fetch/fetch_ros_d22b98f/` (CC BY-NC-SA 4.0 upstream) |
+| `pr2`            | Willow Garage / PR2; see `pr2/pr2_common_9a8e4fb/` (BSD) |
 
 Record provenance (upstream repo URL + commit or ROS package version) in `manifest.csv` or dataset card.
 

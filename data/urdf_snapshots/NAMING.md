@@ -29,6 +29,8 @@ Use **exactly** these directory names (match `schema/persona_label.schema.json`)
 | `nao`                 | SoftBank / Aldebaran NAO (humanoid) |
 | `pepper`              | SoftBank Pepper (humanoid / wheeled base) |
 | `lekiwi`              | LeKiwi mobile manipulator (SIGRobotics-UIUC) |
+| `fetch`               | Fetch Robotics Fetch (mobile manipulator) |
+| `pr2`                 | Willow Garage / PR2 (dual-arm mobile manipulator) |
 
 ## `snapshot_id` (your version label)
 

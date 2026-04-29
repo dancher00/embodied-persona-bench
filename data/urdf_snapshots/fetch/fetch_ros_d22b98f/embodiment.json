@@ -1,0 +1,368 @@
+{
+  "counts": {
+    "actuated_joints": 15,
+    "joint_types": {
+      "continuous": 5,
+      "fixed": 10,
+      "prismatic": 4,
+      "revolute": 6
+    },
+    "joints": 25,
+    "links": 26
+  },
+  "flags": {
+    "has_end_effector_link": false,
+    "has_gripper_joint": true
+  },
+  "joints": [
+    {
+      "axis_xyz": "0 1 0",
+      "child": "r_wheel_link",
+      "limit": {
+        "effort": "8.85",
+        "lower": null,
+        "upper": null,
+        "velocity": "17.4"
+      },
+      "name": "r_wheel_joint",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "l_wheel_link",
+      "limit": {
+        "effort": "8.85",
+        "lower": null,
+        "upper": null,
+        "velocity": "17.4"
+      },
+      "name": "l_wheel_joint",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "torso_lift_link",
+      "limit": {
+        "effort": "450.0",
+        "lower": "0",
+        "upper": "0.38615",
+        "velocity": "0.1"
+      },
+      "name": "torso_lift_joint",
+      "parent": "base_link",
+      "type": "prismatic"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "head_pan_link",
+      "limit": {
+        "effort": "0.32",
+        "lower": "-1.57",
+        "upper": "1.57",
+        "velocity": "1.57"
+      },
+      "name": "head_pan_joint",
+      "parent": "torso_lift_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "head_tilt_link",
+      "limit": {
+        "effort": "0.68",
+        "lower": "-0.76",
+        "upper": "1.45",
+        "velocity": "1.57"
+      },
+      "name": "head_tilt_joint",
+      "parent": "head_pan_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "shoulder_pan_link",
+      "limit": {
+        "effort": "33.82",
+        "lower": "-1.6056",
+        "upper": "1.6056",
+        "velocity": "1.256"
+      },
+      "name": "shoulder_pan_joint",
+      "parent": "torso_lift_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "shoulder_lift_link",
+      "limit": {
+        "effort": "131.76",
+        "lower": "-1.221",
+        "upper": "1.518",
+        "velocity": "1.454"
+      },
+      "name": "shoulder_lift_joint",
+      "parent": "shoulder_pan_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "upperarm_roll_link",
+      "limit": {
+        "effort": "76.94",
+        "lower": null,
+        "upper": null,
+        "velocity": "1.571"
+      },
+      "name": "upperarm_roll_joint",
+      "parent": "shoulder_lift_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "elbow_flex_link",
+      "limit": {
+        "effort": "66.18",
+        "lower": "-2.251",
+        "upper": "2.251",
+        "velocity": "1.521"
+      },
+      "name": "elbow_flex_joint",
+      "parent": "upperarm_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "forearm_roll_link",
+      "limit": {
+        "effort": "29.35",
+        "lower": null,
+        "upper": null,
+        "velocity": "1.571"
+      },
+      "name": "forearm_roll_joint",
+      "parent": "elbow_flex_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "wrist_flex_link",
+      "limit": {
+        "effort": "25.7",
+        "lower": "-2.16",
+        "upper": "2.16",
+        "velocity": "2.268"
+      },
+      "name": "wrist_flex_joint",
+      "parent": "forearm_roll_link",
+      "type": "revolute"
+    },
+    {
+      "axis_xyz": "1 0 0",
+      "child": "wrist_roll_link",
+      "limit": {
+        "effort": "7.36",
+        "lower": null,
+        "upper": null,
+        "velocity": "2.268"
+      },
+      "name": "wrist_roll_joint",
+      "parent": "wrist_flex_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "gripper_link",
+      "limit": null,
+      "name": "gripper_axis",
+      "parent": "wrist_roll_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "r_gripper_finger_link",
+      "limit": {
+        "effort": "60",
+        "lower": "0.0",
+        "upper": "0.05",
+        "velocity": "0.05"
+      },
+      "name": "r_gripper_finger_joint",
+      "parent": "gripper_link",
+      "type": "prismatic"
+    },
+    {
+      "axis_xyz": "0 -1 0",
+      "child": "l_gripper_finger_link",
+      "limit": {
+        "effort": "60",
+        "lower": "0.0",
+        "upper": "0.05",
+        "velocity": "0.05"
+      },
+      "name": "l_gripper_finger_joint",
+      "parent": "gripper_link",
+      "type": "prismatic"
+    },
+    {
+      "axis_xyz": "0 0 -1",
+      "child": "bellows_link",
+      "limit": {
+        "effort": "5.0",
+        "lower": "0",
+        "upper": "0.4",
+        "velocity": "0.1"
+      },
+      "name": "bellows_joint",
+      "parent": "torso_lift_link",
+      "type": "prismatic"
+    },
+    {
+      "axis_xyz": null,
+      "child": "bellows_link2",
+      "limit": null,
+      "name": "bellows_joint2",
+      "parent": "torso_lift_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "estop_link",
+      "limit": null,
+      "name": "estop_joint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 0",
+      "child": "laser_link",
+      "limit": null,
+      "name": "laser_joint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 1 0",
+      "child": "torso_fixed_link",
+      "limit": null,
+      "name": "torso_fixed_joint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "head_camera_link",
+      "limit": null,
+      "name": "head_camera_joint",
+      "parent": "head_tilt_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "head_camera_rgb_frame",
+      "limit": null,
+      "name": "head_camera_rgb_joint",
+      "parent": "head_camera_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "head_camera_rgb_optical_frame",
+      "limit": null,
+      "name": "head_camera_rgb_optical_joint",
+      "parent": "head_camera_rgb_frame",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "head_camera_depth_frame",
+      "limit": null,
+      "name": "head_camera_depth_joint",
+      "parent": "head_camera_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "head_camera_depth_optical_frame",
+      "limit": null,
+      "name": "head_camera_depth_optical_joint",
+      "parent": "head_camera_depth_frame",
+      "type": "fixed"
+    }
+  ],
+  "link_names": [
+    "base_link",
+    "r_wheel_link",
+    "l_wheel_link",
+    "torso_lift_link",
+    "head_pan_link",
+    "head_tilt_link",
+    "shoulder_pan_link",
+    "shoulder_lift_link",
+    "upperarm_roll_link",
+    "elbow_flex_link",
+    "forearm_roll_link",
+    "wrist_flex_link",
+    "wrist_roll_link",
+    "gripper_link",
+    "r_gripper_finger_link",
+    "l_gripper_finger_link",
+    "bellows_link",
+    "bellows_link2",
+    "estop_link",
+    "laser_link",
+    "torso_fixed_link",
+    "head_camera_link",
+    "head_camera_rgb_frame",
+    "head_camera_rgb_optical_frame",
+    "head_camera_depth_frame",
+    "head_camera_depth_optical_frame"
+  ],
+  "mesh_filenames": [
+    "meshes/base_link.dae",
+    "meshes/base_link_collision.STL",
+    "meshes/bellows_link.STL",
+    "meshes/bellows_link_collision.STL",
+    "meshes/elbow_flex_link.dae",
+    "meshes/elbow_flex_link_collision.STL",
+    "meshes/estop_link.STL",
+    "meshes/estop_link.dae",
+    "meshes/forearm_roll_link.dae",
+    "meshes/forearm_roll_link_collision.STL",
+    "meshes/gripper_link.STL",
+    "meshes/gripper_link.dae",
+    "meshes/head_pan_link.dae",
+    "meshes/head_pan_link_collision.STL",
+    "meshes/head_tilt_link.dae",
+    "meshes/head_tilt_link_collision.STL",
+    "meshes/l_gripper_finger_link.STL",
+    "meshes/l_wheel_link.STL",
+    "meshes/l_wheel_link_collision.STL",
+    "meshes/laser_link.STL",
+    "meshes/r_gripper_finger_link.STL",
+    "meshes/r_wheel_link.STL",
+    "meshes/r_wheel_link_collision.STL",
+    "meshes/shoulder_lift_link.dae",
+    "meshes/shoulder_lift_link_collision.STL",
+    "meshes/shoulder_pan_link.dae",
+    "meshes/shoulder_pan_link_collision.STL",
+    "meshes/torso_fixed_link.STL",
+    "meshes/torso_fixed_link.dae",
+    "meshes/torso_lift_link.dae",
+    "meshes/torso_lift_link_collision.STL",
+    "meshes/upperarm_roll_link.dae",
+    "meshes/upperarm_roll_link_collision.STL",
+    "meshes/wrist_flex_link.dae",
+    "meshes/wrist_flex_link_collision.STL",
+    "meshes/wrist_roll_link.dae",
+    "meshes/wrist_roll_link_collision.STL"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "fetch",
+  "robot_name_urdf": "fetch",
+  "schema_version": "0.1.0",
+  "urdf_digest": "a289a46ceb3506eb6776b3d76e0f4b3c80b73ac107c9bb2266b96796af228525",
+  "urdf_path": "data/urdf_snapshots/fetch/fetch_ros_d22b98f/robot.urdf"
+}

@@ -32,7 +32,9 @@
         "so_101",
         "nao",
         "pepper",
-        "lekiwi"
+        "lekiwi",
+        "fetch",
+        "pr2"
       ]
     },
     "urdf_digest": {

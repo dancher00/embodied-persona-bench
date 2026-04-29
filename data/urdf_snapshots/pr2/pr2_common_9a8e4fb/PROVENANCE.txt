@@ -1,0 +1,15 @@
+upstream_url: https://github.com/PR2/pr2_common
+upstream_path: pr2_description/robots/pr2.urdf.xacro, pr2_description/meshes/, pr2_description/materials/
+upstream_commit: 9a8e4fbcf66523ca14faf651c23513ee1ac29ccb
+upstream_package_version: 1.13.1 (pr2_description/package.xml at snapshot)
+license: BSD (per upstream package.xml)
+retrieved_date: 2026-04-29
+notes: |
+  Willow Garage / PR2 dual-arm mobile manipulator. Upstream model is xacro; this snapshot ships a
+  **pre-expanded** plain `robot.urdf` generated with the `xacro` CLI after rewriting all
+  `$(find pr2_description)/` include paths to absolute paths in a temp tree. Mesh and material URIs
+  were then rewritten from `package://pr2_description/meshes/` and `package://pr2_description/materials/`
+  to relative `meshes/` and `materials/` next to `robot.urdf`. Gazebo plugin blocks remain in the URDF
+  but do not affect `extract_urdf_features.py` (link/joint/mesh scan only).
+
+snapshot_contents: robot.urdf, meshes/*, materials/*, package.xml, embodiment.json, PROVENANCE.txt
