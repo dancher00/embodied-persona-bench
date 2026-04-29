@@ -21,6 +21,8 @@ data/
 
 **Unitree R1 (v0 snapshot):** `unitree_r1/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/r1_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/r1_description) @ `202c598`. `robot.urdf` (upstream `R1.urdf`) + `meshes/*.STL` (~22 MB). Manifest row `r1_unitree_ros_202c598`; matplotlib preview path reserved.
 
+**Unitree H1 (v0 snapshot):** `unitree_h1/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/h1_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/h1_description) @ `202c598`. `robot.urdf` (upstream `h1.urdf`) + `meshes/*.dae` (~81 MB). Upstream URDF references `package://h1_description/meshes/*.STL`; snapshot normalizes to local `meshes/*.dae` paths bundled next to the URDF. Manifest row `h1_unitree_ros_202c598`; matplotlib preview path reserved.
+
 **Unitree H2 (v0 snapshot):** `unitree_h2/unitree_ros_202c598/` — humanoid from [unitree_ros/robots/h2_description](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/h2_description) @ `202c598`. `robot.urdf` (upstream `H2.urdf`) + `meshes/*.stl` (~13 MB). Manifest row `h2_unitree_ros_202c598`; matplotlib preview path reserved.
 
 **Pepper (v0 snapshot):** `pepper/jrl_b953b44/` — [jrl-umi3218/pepper_description](https://github.com/jrl-umi3218/pepper_description) @ `b953b44` (BSD-2-Clause). `robot.urdf` + `meshes/` (~11 MB, DAE + STL + PNG). `juliette_head.png` is absent upstream; snapshot duplicates `juliette_face.png` under that name so the head Collada loads without 404.
@@ -39,6 +41,7 @@ For NeurIPS Evaluations & Datasets track, the public release will be hosted on a
 |------------------|--------|
 | `unitree_a1`     | Quadruped snapshot you pin in the manifest |
 | `unitree_r1`     | Unitree R1 humanoid; see `unitree_r1/unitree_ros_202c598/` |
+| `unitree_h1`     | Unitree H1 humanoid; see `unitree_h1/unitree_ros_202c598/` |
 | `unitree_h2`     | Unitree H2 humanoid; see `unitree_h2/unitree_ros_202c598/` |
 | `turtlebot3_burger` | Differential drive |
 | `xlerobot`       | Pin exact hardware revision / URDF package version |

@@ -1,0 +1,11 @@
+upstream_url: https://github.com/unitreerobotics/unitree_ros
+upstream_path: robots/h1_description
+upstream_commit: 202c59879872d0c8d61ab20b93eaedd9ec04b144
+license: See upstream unitree_ros repository (confirm license file at repo root).
+retrieved_date: 2026-04-29
+notes: |
+  Unitree H1 humanoid URDF. Upstream `h1.urdf` uses `package://h1_description/meshes/*.STL`
+  references, but the description folder ships DAE mesh assets. Snapshot normalizes mesh URIs
+  to local `meshes/*.dae` so the URDF resolves in offline tooling and the static viewer.
+
+snapshot_contents: robot.urdf, meshes/*, embodiment.json, PROVENANCE.txt

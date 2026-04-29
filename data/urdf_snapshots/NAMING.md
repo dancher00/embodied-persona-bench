@@ -22,6 +22,7 @@ Use **exactly** these directory names (match `schema/persona_label.schema.json`)
 |-----------------------|--------|
 | `unitree_a1`          | Unitree A1 |
 | `unitree_r1`         | Unitree R1 (humanoid) |
+| `unitree_h1`         | Unitree H1 (humanoid) |
 | `unitree_h2`         | Unitree H2 (humanoid) |
 | `turtlebot3_burger`   | TurtleBot3 Burger |
 | `xlerobot`            | XLeRobot |
