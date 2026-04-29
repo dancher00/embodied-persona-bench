@@ -1,0 +1,287 @@
+{
+  "counts": {
+    "actuated_joints": 9,
+    "joint_types": {
+      "continuous": 9,
+      "fixed": 17
+    },
+    "joints": 26,
+    "links": 27
+  },
+  "flags": {
+    "has_end_effector_link": false,
+    "has_gripper_joint": false
+  },
+  "joints": [
+    {
+      "axis_xyz": "0.07 0 0.05",
+      "child": "camera_link",
+      "limit": null,
+      "name": "camera_joint",
+      "parent": "HEAD_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0 0 1",
+      "child": "imu_sensor_link",
+      "limit": null,
+      "name": "imu_sensor_joint",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "MIDDLE_LEFT_WHEEL_1",
+      "limit": null,
+      "name": "Rev2",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "REAR_LEFT_WHEEL_1",
+      "limit": null,
+      "name": "Rev3",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "REAR_RIGHT_WHEEL_1",
+      "limit": null,
+      "name": "Rev4",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "MIDDLE_RIGHT_WHEEL_1",
+      "limit": null,
+      "name": "Rev5",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": null,
+      "child": "BODY_BASE_CONNECTOR_1",
+      "limit": null,
+      "name": "Rigid8",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "BASE_RIGHT_COVER_1",
+      "limit": null,
+      "name": "Rigid10",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "BASE_LEFT_COVER_1",
+      "limit": null,
+      "name": "Rigid11",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "BASE_FRONT_GRILL_1",
+      "limit": null,
+      "name": "Rigid12",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "Torso_1",
+      "limit": null,
+      "name": "Rigid14",
+      "parent": "BODY_BASE_CONNECTOR_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "NECK_GLOBE_BASE_1",
+      "limit": null,
+      "name": "Rigid16",
+      "parent": "Torso_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "HEAD_VENT_RIGHT_1",
+      "limit": null,
+      "name": "Rigid17",
+      "parent": "HEAD_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "HEAD_1",
+      "limit": null,
+      "name": "Rigid35",
+      "parent": "NECK_GLOBE_BASE_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "EYE_LENS_1",
+      "limit": null,
+      "name": "Rigid20",
+      "parent": "HEAD_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "FACE_1",
+      "limit": null,
+      "name": "Rigid21",
+      "parent": "EYE_LENS_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "VISOR_GLASS_1",
+      "limit": null,
+      "name": "Rigid22",
+      "parent": "HEAD_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "HEAD_VENT_LEFT_1",
+      "limit": null,
+      "name": "Rigid29",
+      "parent": "HEAD_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "LEFT_ARM_1",
+      "limit": null,
+      "name": "Rigid31",
+      "parent": "LEFT_ARM_CONNECTOR_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "RIGHT_ARM_1",
+      "limit": null,
+      "name": "Rigid33",
+      "parent": "RIGHT_ARM_CONNECTOR_1",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": null,
+      "child": "Battery_1",
+      "limit": null,
+      "name": "Rigid34",
+      "parent": "base_link",
+      "type": "fixed"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "RIGHT_ARM_CONNECTOR_1",
+      "limit": null,
+      "name": "Rev35",
+      "parent": "Torso_1",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "LEFT_ARM_CONNECTOR_1",
+      "limit": null,
+      "name": "Rev36",
+      "parent": "Torso_1",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0.0 1.0 0.0",
+      "child": "FRONT_LEFT_WHEEL_1",
+      "limit": null,
+      "name": "Rev37",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "-0.0 1.0 -0.0",
+      "child": "FRONT_RIGHT_WHEEL_1",
+      "limit": null,
+      "name": "Rev38",
+      "parent": "base_link",
+      "type": "continuous"
+    },
+    {
+      "axis_xyz": "0 1.0 0",
+      "child": "BALANCE_WHEEL",
+      "limit": null,
+      "name": "Rev39",
+      "parent": "base_link",
+      "type": "continuous"
+    }
+  ],
+  "link_names": [
+    "base_link",
+    "MIDDLE_LEFT_WHEEL_1",
+    "REAR_LEFT_WHEEL_1",
+    "REAR_RIGHT_WHEEL_1",
+    "BALANCE_WHEEL",
+    "MIDDLE_RIGHT_WHEEL_1",
+    "BODY_BASE_CONNECTOR_1",
+    "BASE_RIGHT_COVER_1",
+    "BASE_LEFT_COVER_1",
+    "BASE_FRONT_GRILL_1",
+    "Torso_1",
+    "NECK_GLOBE_BASE_1",
+    "HEAD_VENT_RIGHT_1",
+    "HEAD_1",
+    "EYE_LENS_1",
+    "FACE_1",
+    "VISOR_GLASS_1",
+    "HEAD_VENT_LEFT_1",
+    "LEFT_ARM_1",
+    "RIGHT_ARM_1",
+    "Battery_1",
+    "RIGHT_ARM_CONNECTOR_1",
+    "LEFT_ARM_CONNECTOR_1",
+    "FRONT_LEFT_WHEEL_1",
+    "FRONT_RIGHT_WHEEL_1",
+    "camera_link",
+    "imu_sensor_link"
+  ],
+  "mesh_filenames": [
+    "meshes/BASE_FRONT_GRILL_1.stl",
+    "meshes/BASE_LEFT_COVER_1.stl",
+    "meshes/BASE_RIGHT_COVER_1.stl",
+    "meshes/BODY_BASE_CONNECTOR_1.stl",
+    "meshes/Battery_1.stl",
+    "meshes/EYE_LENS_1.stl",
+    "meshes/FACE_1.stl",
+    "meshes/FRONT_LEFT_WHEEL_1.stl",
+    "meshes/FRONT_RIGHT_WHEEL_1.stl",
+    "meshes/HEAD_1.stl",
+    "meshes/HEAD_VENT_LEFT_1.stl",
+    "meshes/HEAD_VENT_RIGHT_1.stl",
+    "meshes/LEFT_ARM_1.stl",
+    "meshes/LEFT_ARM_CONNECTOR_1.stl",
+    "meshes/MIDDLE_LEFT_WHEEL_1.stl",
+    "meshes/MIDDLE_RIGHT_WHEEL_1.stl",
+    "meshes/NECK_GLOBE_BASE_1.stl",
+    "meshes/REAR_LEFT_WHEEL_1.stl",
+    "meshes/REAR_RIGHT_WHEEL_1.stl",
+    "meshes/RIGHT_ARM_1.stl",
+    "meshes/RIGHT_ARM_CONNECTOR_1.stl",
+    "meshes/Torso_1.stl",
+    "meshes/VISOR_GLASS_1.stl",
+    "meshes/base_link.stl"
+  ],
+  "mesh_files_missing": [],
+  "mobility_class": "manipulator",
+  "robot_family": "misty",
+  "robot_name_urdf": "misty",
+  "schema_version": "0.1.0",
+  "urdf_digest": "61385e5e31cb06d2959103b8dfddadd685e805917f946bc6a10a4cbbe03545dd",
+  "urdf_path": "data/urdf_snapshots/misty/misty_ros_74b5706/robot.urdf"
+}

@@ -35,7 +35,8 @@
         "pepper",
         "lekiwi",
         "fetch",
-        "pr2"
+        "pr2",
+        "misty"
       ]
     },
     "urdf_digest": {

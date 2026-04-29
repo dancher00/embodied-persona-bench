@@ -33,6 +33,8 @@ data/
 
 **PR2 (v0 snapshot):** `pr2/pr2_common_9a8e4fb/` — [PR2/pr2_common](https://github.com/PR2/pr2_common) `pr2_description` @ `9a8e4fb` (BSD). Dual-arm mobile manipulator; plain **`robot.urdf`** produced by expanding `robots/pr2.urdf.xacro` with the `xacro` tool (after rewriting `$(find pr2_description)/` includes to absolute paths), then mapping `package://pr2_description/meshes/` → `meshes/` and `package://pr2_description/materials/` → `materials/`. ~26 MB including Collada textures. Manifest `pr2_common_9a8e4fb`; matplotlib preview path reserved.
 
+**Misty II (v0 snapshot):** `misty/misty_ros_74b5706/` — [R4Robotics/Misty-ROS](https://github.com/R4Robotics/Misty-ROS) @ `74b5706` (MIT). Wheeled social robot; plain **`robot.urdf`** produced by expanding `urdf/misty.xacro` with `xacro` after rewriting local include paths, then mapping `package://misty_description/meshes/` → `meshes/`. ~59 MB STL bundle. Manifest `misty_ros_74b5706`; matplotlib preview path reserved.
+
 For NeurIPS Evaluations & Datasets track, the public release will be hosted on a designated platform (e.g. Hugging Face) with **Croissant** metadata (core + Responsible AI fields).
 
 ## Robot families (v0)
@@ -51,6 +53,7 @@ For NeurIPS Evaluations & Datasets track, the public release will be hosted on a
 | `lekiwi`         | LeKiwi (UIUC); see `lekiwi/sig_uiuc_f93df541/` |
 | `fetch`          | Fetch Robotics Fetch; see `fetch/fetch_ros_d22b98f/` (CC BY-NC-SA 4.0 upstream) |
 | `pr2`            | Willow Garage / PR2; see `pr2/pr2_common_9a8e4fb/` (BSD) |
+| `misty`          | Misty II; see `misty/misty_ros_74b5706/` (MIT) |
 
 Record provenance (upstream repo URL + commit or ROS package version) in `manifest.csv` or dataset card.
 

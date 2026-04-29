@@ -32,6 +32,7 @@ Use **exactly** these directory names (match `schema/persona_label.schema.json`)
 | `lekiwi`              | LeKiwi mobile manipulator (SIGRobotics-UIUC) |
 | `fetch`               | Fetch Robotics Fetch (mobile manipulator) |
 | `pr2`                 | Willow Garage / PR2 (dual-arm mobile manipulator) |
+| `misty`               | Misty II social robot (wheeled) |
 
 ## `snapshot_id` (your version label)
 

@@ -1,0 +1,13 @@
+upstream_url: https://github.com/R4Robotics/Misty-ROS
+upstream_path: misty_description/urdf/misty.xacro, misty_description/meshes/
+upstream_commit: 74b57063934390344d7e24f4ee34c130bf6d3791
+license: MIT (repository root LICENSE)
+retrieved_date: 2026-04-29
+notes: |
+  Misty II social robot description. Upstream entry point is xacro (`misty.xacro`) with includes
+  to `misty.trans` and `misty.gazebo`; snapshot ships pre-expanded plain `robot.urdf` generated
+  via `xacro` after rewriting `$(find misty_description)/` include paths to absolute paths in a
+  temp copy. Mesh URIs were rewritten from `package://misty_description/meshes/` to `meshes/`
+  for offline tooling and static URDF viewer compatibility.
+
+snapshot_contents: robot.urdf, meshes/*, package.xml, embodiment.json, PROVENANCE.txt
